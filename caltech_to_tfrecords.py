@@ -58,7 +58,7 @@ def main(_):
     difficult = []
     truncated = []
     for i, frame in enumerate(sorted(map(int, list(annotations_frames.keys())))):
-	sys.stdout.write('\r>> Annotating image %d/%d' % (i + 1, len(list(annotations_frames.keys()))))
+        sys.stdout.write('\r>> Annotating image %d/%d' % (i + 1, len(list(annotations_frames.keys()))))
         bboxes_f = []
         labels_f = []
         labels_text_f = []
