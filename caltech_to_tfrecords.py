@@ -32,9 +32,6 @@ def main(_):
     print('Output directory: ./datasets')
     print('Output name: caltech')
 
-    if not tf.gfile.Exists(dataset_dir):
-        tf.gfile.MakeDirs(dataset_dir)
-
     tf_filename = './datasets/caltech.tfrecord'
     if tf.gfile.Exists(tf_filename):
         print('Dataset files already exist. Exiting without re-creating them.')
@@ -44,7 +41,7 @@ def main(_):
     annotations_path = os.path.join('./datasets', 'Annotations/')
     print('image path: ', image_path)
     print('annotations_path: ', annotations_path)
-    images = sorted(os.listdir(path))
+    images = sorted(os.listdir(image_path))
 
     annotations_file = annotations_path+'annotations.json'
     annotations_text = open(annotations_file)
@@ -60,7 +57,8 @@ def main(_):
     labels_text = []
     difficult = []
     truncated = []
-    for frame in sorted(map(int, list(annotations_frames.keys()))):
+    for i, frame in enumerate(sorted(map(int, list(annotations_frames.keys())))):
+	sys.stdout.write('\r>> Annotating image %d/%d' % (i + 1, len(list(annotations_frames.keys()))))
         bboxes_f = []
         labels_f = []
         labels_text_f = []
@@ -68,7 +66,7 @@ def main(_):
         truncated_f = []
         object_dicts_list = annotations_frames[str(frame)]
         for object_dict in object_dicts_list:
-            if object_dict['lbl1'] == 'person':
+            if object_dict['lbl'] == 'person':
                 label_f = 'person'
                 labels_f.append(int(LABELS[label_f][0]))
                 labels_text_f.append(label_f.encode('ascii'))
