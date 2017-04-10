@@ -23,8 +23,10 @@ slim = tf.contrib.slim
 
 LABELS = {
     'none': (0, 'Background'),
-    'person': (1, 'Person'),
-
+    'people': (1, 'People'),
+    'person': (2, 'Person'),
+    #'person_full': (2, 'Person_full'),
+    #'person_occluded': (3, 'Person_Occluded'),
 }
 
 

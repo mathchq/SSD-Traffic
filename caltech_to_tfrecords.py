@@ -67,19 +67,24 @@ def main(_):
         object_dicts_list = annotations_frames[str(frame)]
         for object_dict in object_dicts_list:
             if object_dict['lbl'] == 'person':
+                #Classify further into person_full and person_occluded
                 label_f = 'person'
-                labels_f.append(int(LABELS[label_f][0]))
-                labels_text_f.append(label_f.encode('ascii'))
+            else if object_dict['lbl'] == 'people':
+                label_f = 'people'
+            else:
+                label_f = 'none'
+            labels_f.append(int(LABELS[label_f][0]))
+            labels_text_f.append(label_f.encode('ascii'))
 
-                difficult_f.append(0)
-                truncated_f.append(0)
+            difficult_f.append(0)
+            truncated_f.append(0)
 
-                pos = object_dict['pos']
-                bboxes_f.append((float(pos[1]) / input_height,
-                       float(float(pos[0])) / input_width,
-                       float(pos[1]+pos[3]) / input_height,
-                       float(pos[0]+pos[2]) / input_width
-                       ))
+            pos = object_dict['pos']
+            bboxes_f.append((float(pos[1]) / input_height,
+                    float(float(pos[0])) / input_width,
+                    float(pos[1]+pos[3]) / input_height,
+                    float(pos[0]+pos[2]) / input_width
+                    ))
         bboxes.append(bboxes_f)
         labels.append(labels_f)
         labels_text.append(labels_text_f)
