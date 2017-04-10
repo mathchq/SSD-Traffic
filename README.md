@@ -1,4 +1,4 @@
-# SSD: 
+# SSD: Single Shot Multibox Detector (Tensorflow)
 
 Fine-tuned to Caltech Pedestrian Dataset
 
