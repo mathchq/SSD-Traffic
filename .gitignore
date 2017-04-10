@@ -1,7 +1,7 @@
 # Directories.
 
-datasets/Annotations/
-datasets/JPEGImages/
+datasets/Annotations/*
+datasets/JPEGImages/*
 datasets/__pycache__/
 deployment/__pycache__/
 nets/__pycache__/
