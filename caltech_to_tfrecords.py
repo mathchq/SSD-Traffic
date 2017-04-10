@@ -121,6 +121,8 @@ def main(_):
                 'image/encoded': bytes_feature(image_data)}))
             tfrecord_writer.write(example.SerializeToString())
 
+    print('\nFinished converting the Pascal VOC dataset!')
+
 
 
 
