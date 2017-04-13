@@ -7,7 +7,7 @@ Extended to hand-labelled vehicle dataset
 Improved upon using tracking information provided by video
 
 ## DONE:
-Can create tfrecord files, but still need to make appropriate config (Person_full and Person_occluded)
+(caltech_to_tfrecords.py, caltech_common.py) - Can create tfrecord files, but still need to make appropriate config (Person_full and Person_occluded) - This is for legit, so make new files and edit these for conversion to tfrecords for the BS strategy
 
 ## TODO (BS first to keep in back pocket, then try best at legit):
 
