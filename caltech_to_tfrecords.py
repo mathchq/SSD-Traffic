@@ -17,17 +17,14 @@ a TensorFlow pipeline.
 """
 
 import tensorflow as tf
-
 import os
 import sys
-
 import json
 
 from datasets.caltech_common import LABELS
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
 
 def main(_):
-
     print('Dataset directory: ./datasets')
     print('Output directory: ./datasets')
     print('Output name: caltech')
@@ -48,8 +45,8 @@ def main(_):
     annotations_json = json.load(annotations_text)
     annotations_frames = annotations_json['set01']['V000']['frames']
 
-    input_height = 640
-    input_width = 480
+    input_height = 480
+    input_width = 640
     input_depth = 3
 
     bboxes = []
@@ -76,6 +73,12 @@ def main(_):
             labels_f.append(int(LABELS[label_f][0]))
             labels_text_f.append(label_f.encode('ascii'))
 
+            # Can check whether the object is occluded or not by 
+            # accessing object_dict['ocl'] == 1, if its 1, then it
+            # is occluded.  The associated bbox for the predicted
+            # object (predicting stuff thats not occluded) is then
+            # object_dict['pos'].  If you just want the bbox for
+            # what's visible, do object_dict['posv']
             difficult_f.append(0)
             truncated_f.append(0)
 
@@ -124,7 +127,7 @@ def main(_):
                 'image/encoded': bytes_feature(image_data)}))
             tfrecord_writer.write(example.SerializeToString())
 
-    print('\nFinished converting the Pascal VOC dataset!')
+    print('\nFinished converting the Caltech dataset!')
 
 
 
