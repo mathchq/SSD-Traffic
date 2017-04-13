@@ -9,7 +9,10 @@ Improved upon using tracking information provided by video
 ## DONE:
 Can create tfrecord files, but still need to make appropriate config (Person_full and Person_occluded)
 
-## TODO (Training):
+## TODO (BS first to keep in back pocket, then try best at legit):
+
+### Training:
+
 - Convert Caltech Training Set (Set00 - Set05) to tfrecord files for training (Annotations (JSON) has been extracted for all sets but Frames (JPEG) have only been extracted for Set01). 
   - caltech_to_tfrecords.py functions at creating tfrecords, but configurations need to be done to match with the Fused DNN "state of the art" baseline. 
     - We need to use only images that contain at least one annotated pedestrian (both original and flipped images)
@@ -27,7 +30,7 @@ Can create tfrecord files, but still need to make appropriate config (Person_ful
 
 * BS Possibility: Rather than doing this properly like the above, simply straight up use the Pascal VOC classes, ignore all classes outside of 'Person', maybe only classify Person_full as Person for guaranteeing good results or also classify Person_occluded in the PASCAL way by just marking it as truncated, and straight up use a pre-trained VGG-300 SSD network, like it says under "Fine-tuning existing SSD checkpoints". Let's do this if all else fails with actually doing this properly like the above. 
 
-## TODO (Testing):
+### Testing:
 - Compute the log-average miss rate (L-AMR) as the performance metric
   -  L-AMR is computed evenly spaced in log-space in the range 10−2 to 10-0 by averaging miss rate at the rate of nine false positives per image (FPPI)
   - For curves that end before reaching a given FPPI rate, the minimum miss rate achieved is used
@@ -40,13 +43,17 @@ Can create tfrecord files, but still need to make appropriate config (Person_ful
 
 * BS Possibility: Just evaluate using the script, and get out MAP and precision-recall. Forget the baseline...
 
-## TODO (Vehicle):
+### Vehicle:
 - Split into training and test
 - Convert train to tfrecord, Setup default BBs (bigger), Fine-tune SSD model
 - Figure out evaluation setting, if any
 - Set baseline with our vehicle dataset
 
-## TODO (Improvement):
+* BS Possibility: Just do same thing as for caltech, except now ignore all classes outside of 'car', 'bus', and 'motorbike'
+
+### Improvement:
 - Use the fact that we have videos (for both pedestrians and vehicles) to improve (Ihsan Probability Model) (TEMPORAL INTEGRATION)
 - As suggested in SSD paper, "explore its use as part of a system using recurrent neural networks to detect and track objects in video simultaneously" 
 - Maybe look into the Fused DNN and the Caltech Pedestrian Paper suggestions
+
+* BS Possibility: Try something, and if it doesn't work suggest further work
