@@ -10,6 +10,8 @@ Improved upon using tracking information provided by video
 - (caltech_to_tfrecords.py, datasets/caltech_common.py) -> Can create tfrecord files, but still need to make appropriate config (Person_full and Person_occluded) 
 - This is for legit, so copy to new files and edit for conversion to tfrecords for the BS strategy
 
+- (caltechbs_to_tfrecords.py, datasets/caltechbs.tfrecord) -> tfrecord files created for using existing SSD. Check the python conversion script for what processed data has been converted
+
 ## TODO (BS first to keep in back pocket, then try best at legit):
 
 ### Training:
