@@ -137,7 +137,6 @@ def main(_):
                 ....
             set03/
                 ....
-
         Annotations/
             annotations.json
     """

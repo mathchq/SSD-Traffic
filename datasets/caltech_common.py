@@ -22,9 +22,8 @@ from datasets import dataset_utils
 slim = tf.contrib.slim
 
 LABELS = {
-    'none': (0, 'Background'),
-    'people': (1, 'People'),
-    'person': (2, 'Person'),
+    'none': (0, 'Background')
+    'person': (15, 'Person'),
     #'person_full': (2, 'Person_full'),
     #'person_occluded': (3, 'Person_Occluded'),
 }
