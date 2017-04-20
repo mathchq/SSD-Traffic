@@ -32,7 +32,27 @@ Improved upon using tracking information provided by video
   - 40K iterations using SGD, Learning rate 10-5
 
 * BS Possibility: Rather than doing this properly like the above, simply straight up use the Pascal VOC classes, ignore all classes outside of 'Person', maybe only classify Person_full as Person for guaranteeing good results or also classify Person_occluded in the PASCAL way by just marking it as truncated, and straight up use a pre-trained VGG-300 SSD network, like it says under "Fine-tuning existing SSD checkpoints". Let's do this if all else fails with actually doing this properly like the above. 
-
+'''bash
+DATASET_DIR=./datasets
+TRAIN_DIR=./logs/
+CHECKPOINT_PATH=./checkpoints/ssd_300_vgg.ckpt
+TFRECORD_FILE=caltechbs.tfrecord
+SPLIT=set01_V000
+python train_ssd_network.py \
+    --train_dir=${TRAIN_DIR} \
+    --dataset_dir=${DATASET_DIR} \
+    --dataset_name=pascalvoc_2012 \
+    --file_pattern=${TFRECORD_FILE} \
+    --dataset_split_name=${SPLIT} \
+    --model_name=ssd_300_vgg \
+    --checkpoint_path=${CHECKPOINT_PATH} \
+    --save_summaries_secs=60 \
+    --save_interval_secs=600 \
+    --weight_decay=0.0005 \
+    --optimizer=adam \
+    --learning_rate=0.001 \
+    --batch_size=32
+'''
 ### Testing:
 - Compute the log-average miss rate (L-AMR) as the performance metric
   -  L-AMR is computed evenly spaced in log-space in the range 10−2 to 10-0 by averaging miss rate at the rate of nine false positives per image (FPPI)
