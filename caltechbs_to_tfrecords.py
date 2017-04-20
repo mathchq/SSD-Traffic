@@ -15,7 +15,6 @@
 """Convert a dataset to TFRecords format, which can be easily integrated into
 a TensorFlow pipeline.
 """
-
 import tensorflow as tf
 import os
 import sys
@@ -61,10 +60,25 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                     labels_text_f.append(label_f.encode('ascii'))
 
                     pos = object_dict['pos']
-                    bboxes_f.append((float(pos[1]) / input_height,
-                            float(float(pos[0])) / input_width,
-                            float(pos[1]+pos[3]) / input_height,
-                            float(pos[0]+pos[2]) / input_width
+
+                    ymin = float(pos[1]) / input_height
+                    if float(pos[1]) + float(pos[3]) > input_height:
+                        print("FRAME height:", frame, pos[1], pos[3])
+                        ymax = 1.0
+                    else:
+                        ymax = (float(pos[1]) + float(pos[3])) / input_height
+                    xmin = float(pos[0]) / input_width
+                    if float(pos[0]) + float(pos[2]) > input_width:
+                        print("FRAME width:", frame, pos[0], pos[2])
+                        xmax = 1.0
+                    else:
+                        xmax = (float(pos[0]) + float(pos[2])) / input_width
+
+
+                    bboxes_f.append((ymin,
+                            xmin,
+                            ymax,
+                            xmax
                             ))
 
                 # Can check whether the object is occluded or not by 
@@ -118,9 +132,13 @@ def main(_):
     print('Output directory: ./datasets')
     print('Output name: caltechbs')
 
-    tf_filename = './datasets/caltechbs.tfrecord'
-    if tf.gfile.Exists(tf_filename):
-        print('Dataset files already exist. Exiting without re-creating them.')
+    tf_filename_train = './datasets/caltechbs_train.tfrecord'
+    if tf.gfile.Exists(tf_filename_train):
+        print('Dataset file: caltechbs_train already exist. Exiting without re-creating them.')
+        return
+    tf_filename_val = './datasets/caltechbs_test.tfrecord'
+    if tf.gfile.Exists(tf_filename_val):
+        print('Dataset file: caltechbs_val already exists. Exiting without re-creating them.')
         return
 
     """
@@ -151,7 +169,16 @@ def main(_):
     annotations_text = open(annotations_file)
     annotations_json = json.load(annotations_text)
 
-    with tf.python_io.TFRecordWriter(tf_filename) as tfrecord_writer:
+    with tf.python_io.TFRecordWriter(tf_filename_train) as tfrecord_writer:
+        for set_directory in set_directories:
+            set_directory_path = os.path.join(jpeg_path, set_directory + '/')
+            write_images_from_directory(set_directory, set_directory_path, annotations_json, tfrecord_writer)
+
+    """
+    I have val and train as the same here.  Fix that later.
+    """
+
+    with tf.python_io.TFRecordWriter(tf_filename_val) as tfrecord_writer:
         for set_directory in set_directories:
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
             write_images_from_directory(set_directory, set_directory_path, annotations_json, tfrecord_writer)

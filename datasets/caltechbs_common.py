@@ -23,12 +23,15 @@ slim = tf.contrib.slim
 
 LABELS = {
     'none': (0, 'Background'),
-    'people': (1, 'People'),
-    'person': (2, 'Person'),
+    'person': (1, 'Person'),
     #'person_full': (2, 'Person_full'),
     #'person_occluded': (3, 'Person_Occluded'),
 }
 
+LABELS_TO_NAMES = {
+    0: 'Background',
+    1: 'Person'
+}
 
 def get_split(split_name, dataset_dir, file_pattern, reader,
               split_to_sizes, items_to_descriptions, num_classes):
@@ -83,9 +86,9 @@ def get_split(split_name, dataset_dir, file_pattern, reader,
     decoder = slim.tfexample_decoder.TFExampleDecoder(
         keys_to_features, items_to_handlers)
 
-    labels_to_names = None
-    if dataset_utils.has_labels(dataset_dir):
-        labels_to_names = dataset_utils.read_label_file(dataset_dir)
+    # labels_to_names = None
+    # if dataset_utils.has_labels(dataset_dir):
+    #     labels_to_names = dataset_utils.read_label_file(dataset_dir)
     # else:
     #     labels_to_names = create_readable_names_for_imagenet_labels()
     #     dataset_utils.write_label_file(labels_to_names, dataset_dir)
@@ -97,4 +100,4 @@ def get_split(split_name, dataset_dir, file_pattern, reader,
             num_samples=split_to_sizes[split_name],
             items_to_descriptions=items_to_descriptions,
             num_classes=num_classes,
-            labels_to_names=labels_to_names)
+            labels_to_names=LABELS_TO_NAMES)
