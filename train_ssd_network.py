@@ -135,6 +135,8 @@ tf.app.flags.DEFINE_string(
     'dataset_split_name', 'train', 'The name of the train/test split.')
 tf.app.flags.DEFINE_string(
     'dataset_dir', None, 'The directory where the dataset files are stored.')
+tf.app.flags.DEFINE_string(
+    'file_pattern', None, 'Tfrecord file to use')
 tf.app.flags.DEFINE_integer(
     'labels_offset', 0,
     'An offset for the labels in the dataset. This flag is primarily used to '
@@ -199,7 +201,7 @@ def main(_):
 
         # Select the dataset.
         dataset = dataset_factory.get_dataset(
-            FLAGS.dataset_name, FLAGS.dataset_split_name, FLAGS.dataset_dir)
+            FLAGS.dataset_name, FLAGS.dataset_split_name, FLAGS.dataset_dir, FLAGS.file_pattern)
 
         # Get the SSD network and its anchors.
         ssd_class = nets_factory.get_network(FLAGS.model_name)

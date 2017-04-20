@@ -28,6 +28,7 @@ ITEMS_TO_DESCRIPTIONS = {
 }
 SPLITS_TO_SIZES = {
     'train': 17125,
+    'set01_V000': 1711,
 }
 NUM_CLASSES = 20
 
