@@ -11,8 +11,8 @@
  'checkpoint_model_scope': 'vgg_16',
  'checkpoint_path': './checkpoints/vgg_16.ckpt',
  'clone_on_cpu': False,
- 'dataset_dir': './caltechbs.tfrecord',
- 'dataset_name': 'pascalvoc_2007',
+ 'dataset_dir': './datasets',
+ 'dataset_name': 'caltechbs',
  'dataset_split_name': 'train',
  'end_learning_rate': 0.0001,
  'ftrl_initial_accumulator_value': 0.1,
@@ -34,7 +34,7 @@
  'momentum': 0.9,
  'moving_average_decay': None,
  'negative_ratio': 3.0,
- 'num_classes': 21,
+ 'num_classes': 2,
  'num_clones': 1,
  'num_epochs_per_decay': 2.0,
  'num_preprocessing_threads': 4,
@@ -74,11 +74,11 @@
  'img_shape': (300, 300),
  'no_annotation_label': 21,
  'normalizations': [20, -1, -1, -1, -1, -1],
- 'num_classes': 21,
+ 'num_classes': 2,
  'prior_scaling': [0.1, 0.1, 0.2, 0.2]}
 
 # =========================================================================== #
 # Training | Evaluation dataset files:
 # =========================================================================== #
-['./caltechbs.tfrecord/voc_2007_train.tfrecord']
+['./datasets/caltechbs_train.tfrecord']
 
