@@ -1,0 +1,32 @@
+INFO:tensorflow:Ignoring --checkpoint_path because a checkpoint already exists in ./logs/
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+INFO:tensorflow:Starting Session.
+INFO:tensorflow:Starting Queues.
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global step 10: loss = 10.6470 (662.15 sec/step)
+INFO:tensorflow:global step 20: loss = 12.7359 (761.63 sec/step)
+INFO:tensorflow:global step 30: loss = 5.6176 (928.56 sec/step)
+INFO:tensorflow:global step 40: loss = 6.2240 (796.26 sec/step)
+INFO:tensorflow:global step 50: loss = 14.1748 (896.63 sec/step)
+INFO:tensorflow:global step 60: loss = 6.6592 (866.86 sec/step)
+INFO:tensorflow:global step 70: loss = 4.3012 (887.36 sec/step)
+INFO:tensorflow:global step 80: loss = 11.2686 (835.27 sec/step)
+INFO:tensorflow:global step 90: loss = 4.3618 (767.89 sec/step)
+INFO:tensorflow:global step 100: loss = 4.7163 (793.63 sec/step)
+INFO:tensorflow:global step 110: loss = 5.1253 (769.52 sec/step)
+INFO:tensorflow:global step 120: loss = 3.8145 (905.06 sec/step)
+INFO:tensorflow:global step 130: loss = 3.9199 (880.69 sec/step)
+INFO:tensorflow:global step 140: loss = 5.2383 (879.22 sec/step)
+INFO:tensorflow:global step 150: loss = 4.6821 (755.37 sec/step)
+INFO:tensorflow:global step 160: loss = 4.4586 (1250.23 sec/step)
