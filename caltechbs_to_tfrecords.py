@@ -122,24 +122,24 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             for b in bboxes[i]:
                 [l.append(point) for l, point in zip([xmin, ymin, xmax, ymax], b)]
 
-            if len(bboxes[i]) != 0:
-                image_format = b'JPEG'
-                example = tf.train.Example(features=tf.train.Features(feature={
-                    'image/height': int64_feature(input_height),
-                    'image/width': int64_feature(input_width),
-                    'image/channels': int64_feature(input_depth),
-                    'image/shape': int64_feature([input_height, input_width, input_depth]),
-                    'image/object/bbox/xmin': float_feature(xmin),
-                    'image/object/bbox/xmax': float_feature(xmax),
-                    'image/object/bbox/ymin': float_feature(ymin),
-                    'image/object/bbox/ymax': float_feature(ymax),
-                    'image/object/bbox/label': int64_feature(labels[i]),
-                    'image/object/bbox/label_text': bytes_feature(labels_text[i]),
-                    'image/object/bbox/difficult': int64_feature(difficult[i]),
-                    'image/object/bbox/truncated': int64_feature(truncated[i]),
-                    'image/format': bytes_feature(image_format),
-                    'image/encoded': bytes_feature(image_data)}))
-                tfrecord_writer.write(example.SerializeToString())
+#            if len(bboxes[i]) != 0:
+            image_format = b'JPEG'
+            example = tf.train.Example(features=tf.train.Features(feature={
+                'image/height': int64_feature(input_height),
+                'image/width': int64_feature(input_width),
+                'image/channels': int64_feature(input_depth),
+                'image/shape': int64_feature([input_height, input_width, input_depth]),
+                'image/object/bbox/xmin': float_feature(xmin),
+                'image/object/bbox/xmax': float_feature(xmax),
+                'image/object/bbox/ymin': float_feature(ymin),
+                'image/object/bbox/ymax': float_feature(ymax),
+                'image/object/bbox/label': int64_feature(labels[i]),
+                'image/object/bbox/label_text': bytes_feature(labels_text[i]),
+                'image/object/bbox/difficult': int64_feature(difficult[i]),
+                'image/object/bbox/truncated': int64_feature(truncated[i]),
+                'image/format': bytes_feature(image_format),
+                'image/encoded': bytes_feature(image_data)}))
+            tfrecord_writer.write(example.SerializeToString())
 
 def main(_):
     print('Dataset directory: ./datasets')
