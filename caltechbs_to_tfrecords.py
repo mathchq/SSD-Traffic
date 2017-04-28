@@ -89,7 +89,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                     else:
                         truncated_f.append(0)
                     difficult_f.append(0)
-                else if object_dict['lbl'] == 'person?':
+                elif object_dict['lbl'] == 'person?':
                     truncated_f.append(0)
                     difficult_f.append(1)
                 else:
