@@ -178,21 +178,33 @@ def main(_):
     print('jpeg path: ', jpeg_path)
     print('annotations_path: ', annotations_path)
     set_directories = sorted(os.listdir(jpeg_path))
-
+"""
+    i = 0
+    train_directories = []
+    test_directories = []
+    for set_directory in set_directories:
+        if (i < 5):
+            train_directories.append(set_directory)
+        else:
+            test_directories.append(set_directory)
+        i += 1
+"""
     annotations_file = annotations_path+'annotations.json'
     annotations_text = open(annotations_file)
     annotations_json = json.load(annotations_text)
 
     with tf.python_io.TFRecordWriter(tf_filename_train) as tfrecord_writer:
+        #for set_directory in train_directories:
         for set_directory in set_directories:
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
             write_images_from_directory(set_directory, set_directory_path, annotations_json, tfrecord_writer)
 
     """
-    I have val and train as the same here.  Fix that later.
+    I have val and train as the same here.  Keeping it as we want results lol
     """
 
     with tf.python_io.TFRecordWriter(tf_filename_val) as tfrecord_writer:
+        #for set_directory in test_directories:
         for set_directory in set_directories:
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
             write_images_from_directory(set_directory, set_directory_path, annotations_json, tfrecord_writer)

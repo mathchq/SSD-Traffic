@@ -2,11 +2,13 @@
 
 datasets/Annotations/*
 datasets/JPEGImages/*
+
 datasets/__pycache__/
 deployment/__pycache__/
 nets/__pycache__/
 preprocessing/__pycache__/
 
+.ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
 
 checkpoints/
@@ -15,14 +17,18 @@ checkpoints/ssd_300_vgg.ckpt.index
 checkpoints/models/*
 checkpoints/VGG_VOC0712_SSD_*
 checkpoints/vgg_16.ckpt
+checkpoints/model.ckpt-*
 
 logs/
+<<<<<<< HEAD
 new_logs/
 .ipynb_checkpoints/
 __pycache__/
 
 *.log
 *.tfrecord
+nohup.out
 
 ssd-tensorflow.sublime-workspace
 ssd-tensorflow.sublime-project
+

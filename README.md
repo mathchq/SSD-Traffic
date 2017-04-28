@@ -52,6 +52,7 @@ python train_ssd_network.py \
     --optimizer=adam \
     --learning_rate=0.001 \
     --batch_size=32
+<<<<<<< HEAD
 '''
 ### Testing:
 - Compute the log-average miss rate (L-AMR) as the performance metric

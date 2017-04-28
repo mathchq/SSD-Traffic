@@ -76,7 +76,7 @@ def print_configuration(flags, ssd_params, data_sources, save_dir=None):
         print('# Training | Evaluation dataset files:', file=stream)
         print('# =========================================================================== #', file=stream)
         data_files = parallel_reader.get_data_files(data_sources)
-        pprint(data_files, stream=stream)
+        pprint(sorted(data_files), stream=stream)
         print('', file=stream)
 
     print_config(None)
@@ -227,7 +227,7 @@ def get_init_fn(flags):
         checkpoint_path = tf.train.latest_checkpoint(flags.checkpoint_path)
     else:
         checkpoint_path = flags.checkpoint_path
-    tf.logging.info('Fine-tuning from %s' % checkpoint_path)
+    tf.logging.info('Fine-tuning from %s. Ignoring missing vars: %s' % (checkpoint_path, flags.ignore_missing_vars))
 
     print("Variables to restore: ", variables_to_restore)
 
