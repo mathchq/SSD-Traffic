@@ -30,3 +30,1166 @@ INFO:tensorflow:global step 130: loss = 3.9199 (880.69 sec/step)
 INFO:tensorflow:global step 140: loss = 5.2383 (879.22 sec/step)
 INFO:tensorflow:global step 150: loss = 4.6821 (755.37 sec/step)
 INFO:tensorflow:global step 160: loss = 4.4586 (1250.23 sec/step)
+INFO:tensorflow:Fine-tuning from ./checkpoints/ssd_300_vgg.ckpt
+SSD PARAMS:  SSDParameters(img_shape=(300, 300), num_classes=21, no_annotation_label=21, feat_layers=['block4', 'block7', 'block8', 'block9', 'block10', 'block11'], feat_shapes=[(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)], anchor_size_bounds=[0.15, 0.9], anchor_sizes=[(21.0, 45.0), (45.0, 99.0), (99.0, 153.0), (153.0, 207.0), (207.0, 261.0), (261.0, 315.0)], anchor_ratios=[[2, 0.5], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5], [2, 0.5]], anchor_steps=[8, 16, 32, 64, 100, 300], anchor_offset=0.5, normalizations=[20, -1, -1, -1, -1, -1], prior_scaling=[0.1, 0.1, 0.2, 0.2])
+
+# =========================================================================== #
+# Training | Evaluation flags:
+# =========================================================================== #
+{'adadelta_rho': 0.95,
+ 'adagrad_initial_accumulator_value': 0.1,
+ 'adam_beta1': 0.9,
+ 'adam_beta2': 0.999,
+ 'batch_size': 32,
+ 'checkpoint_exclude_scopes': None,
+ 'checkpoint_model_scope': None,
+ 'checkpoint_path': './checkpoints/ssd_300_vgg.ckpt',
+ 'clone_on_cpu': False,
+ 'dataset_dir': './datasets',
+ 'dataset_name': 'caltechbs',
+ 'dataset_split_name': 'train',
+ 'end_learning_rate': 0.0001,
+ 'file_pattern': None,
+ 'ftrl_initial_accumulator_value': 0.1,
+ 'ftrl_l1': 0.0,
+ 'ftrl_l2': 0.0,
+ 'ftrl_learning_rate_power': -0.5,
+ 'gpu_memory_fraction': 0.75,
+ 'ignore_missing_vars': False,
+ 'label_smoothing': 0.0,
+ 'labels_offset': 0,
+ 'learning_rate': 0.001,
+ 'learning_rate_decay_factor': 0.94,
+ 'learning_rate_decay_type': 'exponential',
+ 'log_every_n_steps': 10,
+ 'loss_alpha': 1.0,
+ 'match_threshold': 0.5,
+ 'max_number_of_steps': None,
+ 'model_name': 'ssd_300_vgg',
+ 'momentum': 0.9,
+ 'moving_average_decay': None,
+ 'negative_ratio': 3.0,
+ 'num_classes': 21,
+ 'num_clones': 1,
+ 'num_epochs_per_decay': 2.0,
+ 'num_preprocessing_threads': 4,
+ 'num_readers': 4,
+ 'opt_epsilon': 1.0,
+ 'optimizer': 'adam',
+ 'preprocessing_name': None,
+ 'rmsprop_decay': 0.9,
+ 'rmsprop_momentum': 0.9,
+ 'save_interval_secs': 600,
+ 'save_summaries_secs': 60,
+ 'train_dir': './logs_new/',
+ 'train_image_size': None,
+ 'trainable_scopes': None,
+ 'weight_decay': 0.0005}
+
+# =========================================================================== #
+# SSD net parameters:
+# =========================================================================== #
+{'anchor_offset': 0.5,
+ 'anchor_ratios': [[2, 0.5],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5],
+                   [2, 0.5]],
+ 'anchor_size_bounds': [0.15, 0.9],
+ 'anchor_sizes': [(21.0, 45.0),
+                  (45.0, 99.0),
+                  (99.0, 153.0),
+                  (153.0, 207.0),
+                  (207.0, 261.0),
+                  (261.0, 315.0)],
+ 'anchor_steps': [8, 16, 32, 64, 100, 300],
+ 'feat_layers': ['block4', 'block7', 'block8', 'block9', 'block10', 'block11'],
+ 'feat_shapes': [(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)],
+ 'img_shape': (300, 300),
+ 'no_annotation_label': 21,
+ 'normalizations': [20, -1, -1, -1, -1, -1],
+ 'num_classes': 21,
+ 'prior_scaling': [0.1, 0.1, 0.2, 0.2]}
+
+# =========================================================================== #
+# Training | Evaluation dataset files:
+# =========================================================================== #
+['./datasets/caltechbs_train.tfrecord']
+
+Variables to restore:  [<tensorflow.python.ops.variables.Variable object at 0x7f6cc5847828>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5847898>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5861550>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5861630>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57fe860>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57fe828>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc581d320>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc581d3c8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc583a630>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc583a5f8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57d80f0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57d8198>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57f40f0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57f4080>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc578f208>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc578f160>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc579ec88>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc579e4e0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57bb588>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57bba90>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5757da0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5757d30>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5778860>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57789b0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5718668>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5718748>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc57345f8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5734780>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56df2b0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56df240>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56f9278>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56f90b8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56963c8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5696438>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56b4048>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56b41d0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc564e3c8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc564e358>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc565cdd8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc565cf28>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5679be0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56796d8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56169e8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5616b38>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc56357f0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5635940>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55d2c18>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55e1cf8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55e1cc0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55f9c18>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55f9b70>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55a52b0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc55a5320>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc553e1d0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc553e048>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc555b828>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc555b898>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc557b748>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc557b6a0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5517da0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5517e10>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5530c50>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5530e10>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54df400>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54df470>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54f9278>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54f90b8>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54978d0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc5497940>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54b57f0>, <tensorflow.python.ops.variables.Variable object at 0x7f6cc54b55f8>]W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+INFO:tensorflow:Starting Session.
+INFO:tensorflow:Starting Queues.
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:Fine-tuning from ./checkpoints/ssd_300_vgg.ckpt
+SSD PARAMS:  SSDParameters(img_shape=(300, 300), num_classes=21, no_annotation_label=21, feat_layers=['block4', 'block7', 'block8', 'block9', 'block10', 'block11'], feat_shapes=[(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)], anchor_size_bounds=[0.15, 0.9], anchor_sizes=[(21.0, 45.0), (45.0, 99.0), (99.0, 153.0), (153.0, 207.0), (207.0, 261.0), (261.0, 315.0)], anchor_ratios=[[2, 0.5], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5], [2, 0.5]], anchor_steps=[8, 16, 32, 64, 100, 300], anchor_offset=0.5, normalizations=[20, -1, -1, -1, -1, -1], prior_scaling=[0.1, 0.1, 0.2, 0.2])
+
+# =========================================================================== #
+# Training | Evaluation flags:
+# =========================================================================== #
+{'adadelta_rho': 0.95,
+ 'adagrad_initial_accumulator_value': 0.1,
+ 'adam_beta1': 0.9,
+ 'adam_beta2': 0.999,
+ 'batch_size': 32,
+ 'checkpoint_exclude_scopes': None,
+ 'checkpoint_model_scope': None,
+ 'checkpoint_path': './checkpoints/ssd_300_vgg.ckpt',
+ 'clone_on_cpu': False,
+ 'dataset_dir': './datasets',
+ 'dataset_name': 'caltechbs',
+ 'dataset_split_name': 'train',
+ 'end_learning_rate': 0.0001,
+ 'file_pattern': None,
+ 'ftrl_initial_accumulator_value': 0.1,
+ 'ftrl_l1': 0.0,
+ 'ftrl_l2': 0.0,
+ 'ftrl_learning_rate_power': -0.5,
+ 'gpu_memory_fraction': 0.75,
+ 'ignore_missing_vars': False,
+ 'label_smoothing': 0.0,
+ 'labels_offset': 0,
+ 'learning_rate': 0.001,
+ 'learning_rate_decay_factor': 0.94,
+ 'learning_rate_decay_type': 'exponential',
+ 'log_every_n_steps': 10,
+ 'loss_alpha': 1.0,
+ 'match_threshold': 0.5,
+ 'max_number_of_steps': None,
+ 'model_name': 'ssd_300_vgg',
+ 'momentum': 0.9,
+ 'moving_average_decay': None,
+ 'negative_ratio': 3.0,
+ 'num_classes': 21,
+ 'num_clones': 1,
+ 'num_epochs_per_decay': 2.0,
+ 'num_preprocessing_threads': 4,
+ 'num_readers': 4,
+ 'opt_epsilon': 1.0,
+ 'optimizer': 'adam',
+ 'preprocessing_name': None,
+ 'rmsprop_decay': 0.9,
+ 'rmsprop_momentum': 0.9,
+ 'save_interval_secs': 600,
+ 'save_summaries_secs': 60,
+ 'train_dir': './logs_new/',
+ 'train_image_size': None,
+ 'trainable_scopes': None,
+ 'weight_decay': 0.0005}
+
+# =========================================================================== #
+# SSD net parameters:
+# =========================================================================== #
+{'anchor_offset': 0.5,
+ 'anchor_ratios': [[2, 0.5],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5],
+                   [2, 0.5]],
+ 'anchor_size_bounds': [0.15, 0.9],
+ 'anchor_sizes': [(21.0, 45.0),
+                  (45.0, 99.0),
+                  (99.0, 153.0),
+                  (153.0, 207.0),
+                  (207.0, 261.0),
+                  (261.0, 315.0)],
+ 'anchor_steps': [8, 16, 32, 64, 100, 300],
+ 'feat_layers': ['block4', 'block7', 'block8', 'block9', 'block10', 'block11'],
+ 'feat_shapes': [(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)],
+ 'img_shape': (300, 300),
+ 'no_annotation_label': 21,
+ 'normalizations': [20, -1, -1, -1, -1, -1],
+ 'num_classes': 21,
+ 'prior_scaling': [0.1, 0.1, 0.2, 0.2]}
+
+# =========================================================================== #
+# Training | Evaluation dataset files:
+# =========================================================================== #
+['./datasets/caltechbs_train.tfrecord']
+
+Variables to restore:  [<tf.Variable 'ssd_300_vgg/conv1/conv1_1/weights:0' shape=(3, 3, 3, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_1/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/weights:0' shape=(3, 3, 64, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/weights:0' shape=(3, 3, 64, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/weights:0' shape=(3, 3, 128, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/weights:0' shape=(3, 3, 512, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/weights:0' shape=(1, 1, 1024, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/weights:0' shape=(1, 1, 1024, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/weights:0' shape=(1, 1, 512, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/L2Normalization/gamma:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/weights:0' shape=(3, 3, 512, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/weights:0' shape=(3, 3, 512, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/weights:0' shape=(3, 3, 1024, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/weights:0' shape=(3, 3, 1024, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/weights:0' shape=(3, 3, 512, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/weights:0' shape=(3, 3, 512, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/weights:0' shape=(3, 3, 256, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/weights:0' shape=(3, 3, 256, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>]2017-04-26 17:31:15.914849: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-04-26 17:31:15.914887: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-04-26 17:31:16.141706: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-04-26 17:31:16.142351: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: Tesla K40c
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:04:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+2017-04-26 17:31:16.142374: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 
+2017-04-26 17:31:16.142383: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y 
+2017-04-26 17:31:16.142399: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:04:00.0)
+INFO:tensorflow:Restoring parameters from ./checkpoints/ssd_300_vgg.ckpt
+INFO:tensorflow:Starting Session.
+INFO:tensorflow:Starting Queues.
+INFO:tensorflow:global_step/sec: 0
+2017-04-26 17:31:25.911968: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.09GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 17:31:40.409267: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.67GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 17:31:42.583950: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.87GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+INFO:tensorflow:global_step/sec: 0.0965744
+INFO:tensorflow:global step 10: loss = 14.7026 (4.67 sec/step)
+INFO:tensorflow:global_step/sec: 0.225494
+INFO:tensorflow:global step 20: loss = 6.9839 (4.94 sec/step)
+INFO:tensorflow:global step 30: loss = 4.4554 (4.67 sec/step)
+INFO:tensorflow:global_step/sec: 0.192714
+INFO:tensorflow:global step 40: loss = 4.1764 (4.68 sec/step)
+INFO:tensorflow:global_step/sec: 0.225488
+INFO:tensorflow:global step 50: loss = 3.6755 (4.67 sec/step)
+INFO:tensorflow:global_step/sec: 0.199631
+INFO:tensorflow:global step 60: loss = 5.1404 (4.69 sec/step)
+INFO:tensorflow:global_step/sec: 0.21675
+INFO:tensorflow:global step 70: loss = 4.1792 (5.97 sec/step)
+INFO:tensorflow:global step 80: loss = 3.8642 (4.69 sec/step)
+INFO:tensorflow:global_step/sec: 0.194969
+INFO:tensorflow:global step 90: loss = 3.7635 (4.66 sec/step)
+INFO:tensorflow:global_step/sec: 0.220714
+INFO:tensorflow:global step 100: loss = 3.2169 (4.68 sec/step)
+INFO:tensorflow:global_step/sec: 0.197329
+INFO:tensorflow:global step 110: loss = 3.8560 (4.65 sec/step)
+INFO:tensorflow:global step 120: loss = 3.5805 (5.96 sec/step)
+INFO:tensorflow:global step 130: loss = 3.3260 (4.67 sec/step)
+INFO:tensorflow:global step 140: loss = 4.3210 (4.68 sec/step)
+INFO:tensorflow:global step 150: loss = 3.8268 (4.66 sec/step)
+INFO:tensorflow:global step 160: loss = 3.3893 (4.70 sec/step)
+INFO:tensorflow:global step 170: loss = 3.3130 (6.11 sec/step)
+INFO:tensorflow:global step 180: loss = 15.8805 (4.69 sec/step)
+INFO:tensorflow:global step 190: loss = 5.3286 (4.70 sec/step)
+INFO:tensorflow:global step 200: loss = 4.6759 (4.68 sec/step)
+INFO:tensorflow:global step 210: loss = 3.6444 (4.68 sec/step)
+INFO:tensorflow:global step 220: loss = 9.7412 (5.81 sec/step)
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.InvalidArgumentError'>, All bounding box coordinates must be in [0.0, 1.0]: -0.00087092828
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+Caused by op 'ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox', defined at:
+  File "train_ssd_network.py", line 389, in <module>
+    tf.app.run()
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 48, in run
+    _sys.exit(main(_sys.argv[:1] + flags_passthrough))
+  File "train_ssd_network.py", line 239, in main
+    image_preprocessing_fn(image, glabels, gbboxes, ssd_shape)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/preprocessing_factory.py", line 59, in preprocessing_fn
+    is_training=is_training, **kwargs)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 395, in preprocess_image
+    data_format=data_format)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 270, in preprocess_for_train
+    aspect_ratio_range=CROP_RATIO_RANGE)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 217, in distorted_bounding_box_crop
+    use_image_if_no_bounding_boxes=True)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/ops/gen_image_ops.py", line 989, in sample_distorted_bounding_box
+    name=name)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
+    op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 2336, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1228, in __init__
+    self._traceback = _extract_stack()
+
+InvalidArgumentError (see above for traceback): All bounding box coordinates must be in [0.0, 1.0]: -0.00087092828
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+INFO:tensorflow:Finished training! Saving model to disk.
+
+Traceback (most recent call last):
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1039, in _do_call
+    return fn(*args)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1021, in _run_fn
+    status, run_metadata)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.InvalidArgumentError: All bounding box coordinates must be in [0.0, 1.0]: -0.00087092828
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "train_ssd_network.py", line 389, in <module>
+    tf.app.run()
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 48, in run
+    _sys.exit(main(_sys.argv[:1] + flags_passthrough))
+  File "train_ssd_network.py", line 385, in main
+    sync_optimizer=None)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/contrib/slim/python/slim/learning.py", line 752, in train
+    sv.saver.save(sess, sv.save_path, global_step=sv.global_step)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/supervisor.py", line 960, in managed_session
+    self.stop(close_summary_writer=close_summary_writer)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/supervisor.py", line 788, in stop
+    stop_grace_period_secs=self._stop_grace_secs)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/coordinator.py", line 389, in join
+    six.reraise(*self._exc_info_to_raise)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/six.py", line 686, in reraise
+    raise value
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/queue_runner_impl.py", line 234, in _run
+    sess.run(enqueue_op)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 778, in run
+    run_metadata_ptr)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 982, in _run
+    feed_dict_string, options, run_metadata)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1032, in _do_run
+    target_list, options, run_metadata)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1052, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.InvalidArgumentError: All bounding box coordinates must be in [0.0, 1.0]: -0.00087092828
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+Caused by op 'ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox', defined at:
+  File "train_ssd_network.py", line 389, in <module>
+    tf.app.run()
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 48, in run
+    _sys.exit(main(_sys.argv[:1] + flags_passthrough))
+  File "train_ssd_network.py", line 239, in main
+    image_preprocessing_fn(image, glabels, gbboxes, ssd_shape)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/preprocessing_factory.py", line 59, in preprocessing_fn
+    is_training=is_training, **kwargs)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 395, in preprocess_image
+    data_format=data_format)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 270, in preprocess_for_train
+    aspect_ratio_range=CROP_RATIO_RANGE)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 217, in distorted_bounding_box_crop
+    use_image_if_no_bounding_boxes=True)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/ops/gen_image_ops.py", line 989, in sample_distorted_bounding_box
+    name=name)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
+    op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 2336, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1228, in __init__
+    self._traceback = _extract_stack()
+
+InvalidArgumentError (see above for traceback): All bounding box coordinates must be in [0.0, 1.0]: -0.00087092828
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+INFO:tensorflow:Fine-tuning from ./checkpoints/ssd_300_vgg.ckpt
+SSD PARAMS:  SSDParameters(img_shape=(300, 300), num_classes=21, no_annotation_label=21, feat_layers=['block4', 'block7', 'block8', 'block9', 'block10', 'block11'], feat_shapes=[(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)], anchor_size_bounds=[0.15, 0.9], anchor_sizes=[(21.0, 45.0), (45.0, 99.0), (99.0, 153.0), (153.0, 207.0), (207.0, 261.0), (261.0, 315.0)], anchor_ratios=[[2, 0.5], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5], [2, 0.5]], anchor_steps=[8, 16, 32, 64, 100, 300], anchor_offset=0.5, normalizations=[20, -1, -1, -1, -1, -1], prior_scaling=[0.1, 0.1, 0.2, 0.2])
+
+# =========================================================================== #
+# Training | Evaluation flags:
+# =========================================================================== #
+{'adadelta_rho': 0.95,
+ 'adagrad_initial_accumulator_value': 0.1,
+ 'adam_beta1': 0.9,
+ 'adam_beta2': 0.999,
+ 'batch_size': 32,
+ 'checkpoint_exclude_scopes': None,
+ 'checkpoint_model_scope': None,
+ 'checkpoint_path': './checkpoints/ssd_300_vgg.ckpt',
+ 'clone_on_cpu': False,
+ 'dataset_dir': './datasets',
+ 'dataset_name': 'caltechbs',
+ 'dataset_split_name': 'train',
+ 'end_learning_rate': 0.0001,
+ 'file_pattern': None,
+ 'ftrl_initial_accumulator_value': 0.1,
+ 'ftrl_l1': 0.0,
+ 'ftrl_l2': 0.0,
+ 'ftrl_learning_rate_power': -0.5,
+ 'gpu_memory_fraction': 0.75,
+ 'ignore_missing_vars': False,
+ 'label_smoothing': 0.0,
+ 'labels_offset': 0,
+ 'learning_rate': 0.001,
+ 'learning_rate_decay_factor': 0.94,
+ 'learning_rate_decay_type': 'exponential',
+ 'log_every_n_steps': 10,
+ 'loss_alpha': 1.0,
+ 'match_threshold': 0.5,
+ 'max_number_of_steps': None,
+ 'model_name': 'ssd_300_vgg',
+ 'momentum': 0.9,
+ 'moving_average_decay': None,
+ 'negative_ratio': 3.0,
+ 'num_classes': 21,
+ 'num_clones': 1,
+ 'num_epochs_per_decay': 2.0,
+ 'num_preprocessing_threads': 4,
+ 'num_readers': 4,
+ 'opt_epsilon': 1.0,
+ 'optimizer': 'adam',
+ 'preprocessing_name': None,
+ 'rmsprop_decay': 0.9,
+ 'rmsprop_momentum': 0.9,
+ 'save_interval_secs': 600,
+ 'save_summaries_secs': 60,
+ 'train_dir': './logs_new/',
+ 'train_image_size': None,
+ 'trainable_scopes': None,
+ 'weight_decay': 0.0005}
+
+# =========================================================================== #
+# SSD net parameters:
+# =========================================================================== #
+{'anchor_offset': 0.5,
+ 'anchor_ratios': [[2, 0.5],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5],
+                   [2, 0.5]],
+ 'anchor_size_bounds': [0.15, 0.9],
+ 'anchor_sizes': [(21.0, 45.0),
+                  (45.0, 99.0),
+                  (99.0, 153.0),
+                  (153.0, 207.0),
+                  (207.0, 261.0),
+                  (261.0, 315.0)],
+ 'anchor_steps': [8, 16, 32, 64, 100, 300],
+ 'feat_layers': ['block4', 'block7', 'block8', 'block9', 'block10', 'block11'],
+ 'feat_shapes': [(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)],
+ 'img_shape': (300, 300),
+ 'no_annotation_label': 21,
+ 'normalizations': [20, -1, -1, -1, -1, -1],
+ 'num_classes': 21,
+ 'prior_scaling': [0.1, 0.1, 0.2, 0.2]}
+
+# =========================================================================== #
+# Training | Evaluation dataset files:
+# =========================================================================== #
+['./datasets/caltechbs_train.tfrecord']
+
+Variables to restore:  [<tf.Variable 'ssd_300_vgg/conv1/conv1_1/weights:0' shape=(3, 3, 3, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_1/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/weights:0' shape=(3, 3, 64, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/weights:0' shape=(3, 3, 64, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/weights:0' shape=(3, 3, 128, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/weights:0' shape=(3, 3, 512, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/weights:0' shape=(1, 1, 1024, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/weights:0' shape=(1, 1, 1024, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/weights:0' shape=(1, 1, 512, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/L2Normalization/gamma:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/weights:0' shape=(3, 3, 512, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/weights:0' shape=(3, 3, 512, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/weights:0' shape=(3, 3, 1024, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/weights:0' shape=(3, 3, 1024, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/weights:0' shape=(3, 3, 512, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/weights:0' shape=(3, 3, 512, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/weights:0' shape=(3, 3, 256, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/weights:0' shape=(3, 3, 256, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>]2017-04-26 20:01:12.531706: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-04-26 20:01:12.531755: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-04-26 20:01:12.755704: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-04-26 20:01:12.756343: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: Tesla K40c
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:04:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+2017-04-26 20:01:12.756365: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 
+2017-04-26 20:01:12.756375: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y 
+2017-04-26 20:01:12.756386: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:04:00.0)
+INFO:tensorflow:Restoring parameters from ./checkpoints/ssd_300_vgg.ckpt
+INFO:tensorflow:Fine-tuning from ./checkpoints/ssd_300_vgg.ckpt
+SSD PARAMS:  SSDParameters(img_shape=(300, 300), num_classes=21, no_annotation_label=21, feat_layers=['block4', 'block7', 'block8', 'block9', 'block10', 'block11'], feat_shapes=[(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)], anchor_size_bounds=[0.15, 0.9], anchor_sizes=[(21.0, 45.0), (45.0, 99.0), (99.0, 153.0), (153.0, 207.0), (207.0, 261.0), (261.0, 315.0)], anchor_ratios=[[2, 0.5], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5], [2, 0.5]], anchor_steps=[8, 16, 32, 64, 100, 300], anchor_offset=0.5, normalizations=[20, -1, -1, -1, -1, -1], prior_scaling=[0.1, 0.1, 0.2, 0.2])
+
+# =========================================================================== #
+# Training | Evaluation flags:
+# =========================================================================== #
+{'adadelta_rho': 0.95,
+ 'adagrad_initial_accumulator_value': 0.1,
+ 'adam_beta1': 0.9,
+ 'adam_beta2': 0.999,
+ 'batch_size': 32,
+ 'checkpoint_exclude_scopes': None,
+ 'checkpoint_model_scope': None,
+ 'checkpoint_path': './checkpoints/ssd_300_vgg.ckpt',
+ 'clone_on_cpu': False,
+ 'dataset_dir': './datasets',
+ 'dataset_name': 'caltechbs',
+ 'dataset_split_name': 'train',
+ 'end_learning_rate': 0.0001,
+ 'file_pattern': None,
+ 'ftrl_initial_accumulator_value': 0.1,
+ 'ftrl_l1': 0.0,
+ 'ftrl_l2': 0.0,
+ 'ftrl_learning_rate_power': -0.5,
+ 'gpu_memory_fraction': 0.75,
+ 'ignore_missing_vars': False,
+ 'label_smoothing': 0.0,
+ 'labels_offset': 0,
+ 'learning_rate': 0.001,
+ 'learning_rate_decay_factor': 0.94,
+ 'learning_rate_decay_type': 'exponential',
+ 'log_every_n_steps': 10,
+ 'loss_alpha': 1.0,
+ 'match_threshold': 0.5,
+ 'max_number_of_steps': None,
+ 'model_name': 'ssd_300_vgg',
+ 'momentum': 0.9,
+ 'moving_average_decay': None,
+ 'negative_ratio': 3.0,
+ 'num_classes': 21,
+ 'num_clones': 1,
+ 'num_epochs_per_decay': 2.0,
+ 'num_preprocessing_threads': 4,
+ 'num_readers': 4,
+ 'opt_epsilon': 1.0,
+ 'optimizer': 'adam',
+ 'preprocessing_name': None,
+ 'rmsprop_decay': 0.9,
+ 'rmsprop_momentum': 0.9,
+ 'save_interval_secs': 600,
+ 'save_summaries_secs': 60,
+ 'train_dir': './logs_new/',
+ 'train_image_size': None,
+ 'trainable_scopes': None,
+ 'weight_decay': 0.0005}
+
+# =========================================================================== #
+# SSD net parameters:
+# =========================================================================== #
+{'anchor_offset': 0.5,
+ 'anchor_ratios': [[2, 0.5],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5],
+                   [2, 0.5]],
+ 'anchor_size_bounds': [0.15, 0.9],
+ 'anchor_sizes': [(21.0, 45.0),
+                  (45.0, 99.0),
+                  (99.0, 153.0),
+                  (153.0, 207.0),
+                  (207.0, 261.0),
+                  (261.0, 315.0)],
+ 'anchor_steps': [8, 16, 32, 64, 100, 300],
+ 'feat_layers': ['block4', 'block7', 'block8', 'block9', 'block10', 'block11'],
+ 'feat_shapes': [(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)],
+ 'img_shape': (300, 300),
+ 'no_annotation_label': 21,
+ 'normalizations': [20, -1, -1, -1, -1, -1],
+ 'num_classes': 21,
+ 'prior_scaling': [0.1, 0.1, 0.2, 0.2]}
+
+# =========================================================================== #
+# Training | Evaluation dataset files:
+# =========================================================================== #
+['./datasets/caltechbs_train.tfrecord']
+
+Variables to restore:  [<tf.Variable 'ssd_300_vgg/conv1/conv1_1/weights:0' shape=(3, 3, 3, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_1/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/weights:0' shape=(3, 3, 64, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/weights:0' shape=(3, 3, 64, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/weights:0' shape=(3, 3, 128, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/weights:0' shape=(3, 3, 512, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/weights:0' shape=(1, 1, 1024, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/weights:0' shape=(1, 1, 1024, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/weights:0' shape=(1, 1, 512, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/L2Normalization/gamma:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/weights:0' shape=(3, 3, 512, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/weights:0' shape=(3, 3, 512, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/weights:0' shape=(3, 3, 1024, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/weights:0' shape=(3, 3, 1024, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/weights:0' shape=(3, 3, 512, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/weights:0' shape=(3, 3, 512, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/weights:0' shape=(3, 3, 256, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/weights:0' shape=(3, 3, 256, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>]INFO:tensorflow:Fine-tuning from ./checkpoints/ssd_300_vgg.ckpt
+SSD PARAMS:  SSDParameters(img_shape=(300, 300), num_classes=21, no_annotation_label=21, feat_layers=['block4', 'block7', 'block8', 'block9', 'block10', 'block11'], feat_shapes=[(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)], anchor_size_bounds=[0.15, 0.9], anchor_sizes=[(21.0, 45.0), (45.0, 99.0), (99.0, 153.0), (153.0, 207.0), (207.0, 261.0), (261.0, 315.0)], anchor_ratios=[[2, 0.5], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5, 3, 0.3333333333333333], [2, 0.5], [2, 0.5]], anchor_steps=[8, 16, 32, 64, 100, 300], anchor_offset=0.5, normalizations=[20, -1, -1, -1, -1, -1], prior_scaling=[0.1, 0.1, 0.2, 0.2])
+
+# =========================================================================== #
+# Training | Evaluation flags:
+# =========================================================================== #
+{'adadelta_rho': 0.95,
+ 'adagrad_initial_accumulator_value': 0.1,
+ 'adam_beta1': 0.9,
+ 'adam_beta2': 0.999,
+ 'batch_size': 32,
+ 'checkpoint_exclude_scopes': None,
+ 'checkpoint_model_scope': None,
+ 'checkpoint_path': './checkpoints/ssd_300_vgg.ckpt',
+ 'clone_on_cpu': False,
+ 'dataset_dir': './datasets',
+ 'dataset_name': 'caltechbs',
+ 'dataset_split_name': 'train',
+ 'end_learning_rate': 0.0001,
+ 'file_pattern': None,
+ 'ftrl_initial_accumulator_value': 0.1,
+ 'ftrl_l1': 0.0,
+ 'ftrl_l2': 0.0,
+ 'ftrl_learning_rate_power': -0.5,
+ 'gpu_memory_fraction': 0.75,
+ 'ignore_missing_vars': False,
+ 'label_smoothing': 0.0,
+ 'labels_offset': 0,
+ 'learning_rate': 0.001,
+ 'learning_rate_decay_factor': 0.94,
+ 'learning_rate_decay_type': 'exponential',
+ 'log_every_n_steps': 10,
+ 'loss_alpha': 1.0,
+ 'match_threshold': 0.5,
+ 'max_number_of_steps': None,
+ 'model_name': 'ssd_300_vgg',
+ 'momentum': 0.9,
+ 'moving_average_decay': None,
+ 'negative_ratio': 3.0,
+ 'num_classes': 21,
+ 'num_clones': 1,
+ 'num_epochs_per_decay': 2.0,
+ 'num_preprocessing_threads': 4,
+ 'num_readers': 4,
+ 'opt_epsilon': 1.0,
+ 'optimizer': 'adam',
+ 'preprocessing_name': None,
+ 'rmsprop_decay': 0.9,
+ 'rmsprop_momentum': 0.9,
+ 'save_interval_secs': 600,
+ 'save_summaries_secs': 60,
+ 'train_dir': './logs_new/',
+ 'train_image_size': None,
+ 'trainable_scopes': None,
+ 'weight_decay': 0.0005}
+
+# =========================================================================== #
+# SSD net parameters:
+# =========================================================================== #
+{'anchor_offset': 0.5,
+ 'anchor_ratios': [[2, 0.5],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5, 3, 0.3333333333333333],
+                   [2, 0.5],
+                   [2, 0.5]],
+ 'anchor_size_bounds': [0.15, 0.9],
+ 'anchor_sizes': [(21.0, 45.0),
+                  (45.0, 99.0),
+                  (99.0, 153.0),
+                  (153.0, 207.0),
+                  (207.0, 261.0),
+                  (261.0, 315.0)],
+ 'anchor_steps': [8, 16, 32, 64, 100, 300],
+ 'feat_layers': ['block4', 'block7', 'block8', 'block9', 'block10', 'block11'],
+ 'feat_shapes': [(38, 38), (19, 19), (10, 10), (5, 5), (3, 3), (1, 1)],
+ 'img_shape': (300, 300),
+ 'no_annotation_label': 21,
+ 'normalizations': [20, -1, -1, -1, -1, -1],
+ 'num_classes': 21,
+ 'prior_scaling': [0.1, 0.1, 0.2, 0.2]}
+
+# =========================================================================== #
+# Training | Evaluation dataset files:
+# =========================================================================== #
+['./datasets/caltechbs_train.tfrecord']
+
+Variables to restore:  [<tf.Variable 'ssd_300_vgg/conv1/conv1_1/weights:0' shape=(3, 3, 3, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_1/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/weights:0' shape=(3, 3, 64, 64) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv1/conv1_2/biases:0' shape=(64,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/weights:0' shape=(3, 3, 64, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/weights:0' shape=(3, 3, 128, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv2/conv2_2/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_2/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/weights:0' shape=(3, 3, 256, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv3/conv3_3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv4/conv4_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_1/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_2/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/weights:0' shape=(3, 3, 512, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv5/conv5_3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/weights:0' shape=(3, 3, 512, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv6/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/weights:0' shape=(1, 1, 1024, 1024) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/conv7/biases:0' shape=(1024,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/weights:0' shape=(1, 1, 1024, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv1x1/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/weights:0' shape=(3, 3, 256, 512) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8/conv3x3/biases:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/weights:0' shape=(1, 1, 512, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/weights:0' shape=(1, 1, 256, 128) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv1x1/biases:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/weights:0' shape=(3, 3, 128, 256) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11/conv3x3/biases:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/L2Normalization/gamma:0' shape=(512,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/weights:0' shape=(3, 3, 512, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/weights:0' shape=(3, 3, 512, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block4_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/weights:0' shape=(3, 3, 1024, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/weights:0' shape=(3, 3, 1024, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block7_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/weights:0' shape=(3, 3, 512, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/weights:0' shape=(3, 3, 512, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block8_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/weights:0' shape=(3, 3, 256, 24) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_loc/biases:0' shape=(24,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/weights:0' shape=(3, 3, 256, 126) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block9_box/conv_cls/biases:0' shape=(126,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block10_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/weights:0' shape=(3, 3, 256, 16) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_loc/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/weights:0' shape=(3, 3, 256, 84) dtype=float32_ref>, <tf.Variable 'ssd_300_vgg/block11_box/conv_cls/biases:0' shape=(84,) dtype=float32_ref>]2017-04-26 22:52:40.240641: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-04-26 22:52:40.240680: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-04-26 22:52:40.483777: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-04-26 22:52:40.484415: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: Tesla K40c
+major: 3 minor: 5 memoryClockRate (GHz) 0.745
+pciBusID 0000:04:00.0
+Total memory: 11.17GiB
+Free memory: 11.10GiB
+2017-04-26 22:52:40.484437: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 
+2017-04-26 22:52:40.484447: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y 
+2017-04-26 22:52:40.484458: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K40c, pci bus id: 0000:04:00.0)
+INFO:tensorflow:Restoring parameters from ./checkpoints/ssd_300_vgg.ckpt
+INFO:tensorflow:Starting Session.
+INFO:tensorflow:Starting Queues.
+INFO:tensorflow:global_step/sec: 0
+2017-04-26 22:52:51.871022: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.09GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 22:52:51.972722: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.09GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 22:52:59.774274: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.27GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 22:53:02.781207: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 32.00MiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 22:53:07.605372: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.67GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-04-26 22:53:09.773002: W tensorflow/core/common_runtime/bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.87GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+INFO:tensorflow:global_step/sec: 0.10069
+INFO:tensorflow:global step 10: loss = 12.7881 (4.67 sec/step)
+INFO:tensorflow:global_step/sec: 0.200132
+INFO:tensorflow:global step 20: loss = 6.2426 (4.99 sec/step)
+INFO:tensorflow:global step 30: loss = 4.2355 (4.68 sec/step)
+INFO:tensorflow:global_step/sec: 0.206362
+INFO:tensorflow:global step 40: loss = 3.9102 (4.66 sec/step)
+INFO:tensorflow:global_step/sec: 0.210752
+INFO:tensorflow:global step 50: loss = 4.0056 (4.69 sec/step)
+INFO:tensorflow:global_step/sec: 0.207404
+INFO:tensorflow:global step 60: loss = 3.5767 (4.68 sec/step)
+INFO:tensorflow:global_step/sec: 0.208811
+INFO:tensorflow:global step 70: loss = 7.8785 (5.50 sec/step)
+INFO:tensorflow:global step 80: loss = 4.5357 (4.69 sec/step)
+INFO:tensorflow:global_step/sec: 0.215466
+INFO:tensorflow:global step 90: loss = 4.1854 (4.67 sec/step)
+INFO:tensorflow:global_step/sec: 0.197186
+INFO:tensorflow:global step 100: loss = 3.0224 (4.70 sec/step)
+INFO:tensorflow:global_step/sec: 0.221706
+INFO:tensorflow:global step 110: loss = 3.5250 (4.68 sec/step)
+INFO:tensorflow:global step 120: loss = 3.8301 (4.71 sec/step)
+INFO:tensorflow:global step 130: loss = 3.8129 (4.69 sec/step)
+INFO:tensorflow:global step 140: loss = 3.7160 (4.70 sec/step)
+INFO:tensorflow:global step 150: loss = 3.2752 (4.71 sec/step)
+INFO:tensorflow:global step 160: loss = 3.0767 (4.65 sec/step)
+INFO:tensorflow:global step 170: loss = 8.0560 (5.08 sec/step)
+INFO:tensorflow:global step 180: loss = 5.0066 (4.67 sec/step)
+INFO:tensorflow:global step 190: loss = 4.6417 (4.68 sec/step)
+INFO:tensorflow:global step 200: loss = 5.1771 (4.70 sec/step)
+INFO:tensorflow:global step 210: loss = 3.7001 (4.67 sec/step)
+INFO:tensorflow:global step 220: loss = 10.4119 (4.79 sec/step)
+INFO:tensorflow:global step 230: loss = 10.2579 (4.68 sec/step)
+INFO:tensorflow:global step 240: loss = 11.3964 (4.66 sec/step)
+INFO:tensorflow:global step 250: loss = 10.2826 (4.67 sec/step)
+INFO:tensorflow:global step 260: loss = 11.3201 (4.69 sec/step)
+INFO:tensorflow:global step 270: loss = 9.1731 (5.45 sec/step)
+INFO:tensorflow:global step 280: loss = 9.7373 (4.66 sec/step)
+INFO:tensorflow:global step 290: loss = 7.8932 (4.68 sec/step)
+INFO:tensorflow:global step 300: loss = 9.3059 (4.66 sec/step)
+INFO:tensorflow:global step 310: loss = 6.0148 (4.67 sec/step)
+INFO:tensorflow:global step 320: loss = 5.5794 (4.77 sec/step)
+INFO:tensorflow:global step 330: loss = 6.3104 (4.68 sec/step)
+INFO:tensorflow:global step 340: loss = 5.6373 (4.67 sec/step)
+INFO:tensorflow:global step 350: loss = 7.6535 (4.69 sec/step)
+INFO:tensorflow:global step 360: loss = 6.9859 (4.67 sec/step)
+INFO:tensorflow:global step 370: loss = 5.1691 (4.71 sec/step)
+INFO:tensorflow:global step 380: loss = 7.2916 (4.68 sec/step)
+INFO:tensorflow:global step 390: loss = 5.7297 (4.68 sec/step)
+INFO:tensorflow:global step 400: loss = 5.5942 (4.68 sec/step)
+INFO:tensorflow:global step 410: loss = 3.6475 (4.69 sec/step)
+INFO:tensorflow:global step 420: loss = 4.3304 (5.17 sec/step)
+INFO:tensorflow:global step 430: loss = 3.4072 (4.66 sec/step)
+INFO:tensorflow:global step 440: loss = 6.0831 (4.67 sec/step)
+INFO:tensorflow:global step 450: loss = 3.6782 (4.68 sec/step)
+INFO:tensorflow:global step 460: loss = 3.2539 (4.69 sec/step)
+INFO:tensorflow:global step 470: loss = 3.6924 (4.72 sec/step)
+INFO:tensorflow:global step 480: loss = 3.5990 (4.68 sec/step)
+INFO:tensorflow:global step 490: loss = 4.1813 (4.67 sec/step)
+INFO:tensorflow:global step 500: loss = 4.1346 (4.69 sec/step)
+INFO:tensorflow:global step 510: loss = 5.2163 (4.66 sec/step)
+INFO:tensorflow:global step 520: loss = 3.8095 (5.72 sec/step)
+INFO:tensorflow:global step 530: loss = 3.7054 (4.67 sec/step)
+INFO:tensorflow:global step 540: loss = 6.3608 (4.68 sec/step)
+INFO:tensorflow:global step 550: loss = 8.2794 (4.69 sec/step)
+INFO:tensorflow:global step 560: loss = 9.5646 (4.68 sec/step)
+INFO:tensorflow:global step 570: loss = 11.8406 (4.73 sec/step)
+INFO:tensorflow:global step 580: loss = 12.5374 (4.67 sec/step)
+INFO:tensorflow:global step 590: loss = 10.1351 (4.68 sec/step)
+INFO:tensorflow:global step 600: loss = 11.2803 (4.87 sec/step)
+INFO:tensorflow:global step 610: loss = 8.1749 (4.66 sec/step)
+INFO:tensorflow:global step 620: loss = 11.1517 (4.77 sec/step)
+INFO:tensorflow:global step 630: loss = 8.3562 (4.67 sec/step)
+INFO:tensorflow:global step 640: loss = 8.3367 (4.68 sec/step)
+INFO:tensorflow:global step 650: loss = 7.1964 (4.70 sec/step)
+INFO:tensorflow:global step 660: loss = 7.2788 (4.67 sec/step)
+INFO:tensorflow:global step 670: loss = 5.1888 (4.72 sec/step)
+INFO:tensorflow:global step 680: loss = 6.5819 (4.68 sec/step)
+INFO:tensorflow:global step 690: loss = 7.7248 (4.69 sec/step)
+INFO:tensorflow:global step 700: loss = 6.8375 (4.69 sec/step)
+INFO:tensorflow:global step 710: loss = 5.9037 (4.68 sec/step)
+INFO:tensorflow:global step 720: loss = 6.6185 (5.48 sec/step)
+INFO:tensorflow:global step 730: loss = 4.9624 (4.69 sec/step)
+INFO:tensorflow:global step 740: loss = 4.0877 (4.69 sec/step)
+INFO:tensorflow:global step 750: loss = 4.5879 (4.66 sec/step)
+INFO:tensorflow:global step 760: loss = 4.8139 (4.68 sec/step)
+INFO:tensorflow:global step 770: loss = 4.5086 (4.71 sec/step)
+INFO:tensorflow:global step 780: loss = 4.6201 (4.67 sec/step)
+INFO:tensorflow:global step 790: loss = 9.3422 (4.68 sec/step)
+INFO:tensorflow:global step 800: loss = 9.7089 (4.69 sec/step)
+INFO:tensorflow:global step 810: loss = 4.0745 (5.00 sec/step)
+INFO:tensorflow:global step 820: loss = 6.3366 (5.57 sec/step)
+INFO:tensorflow:global step 830: loss = 5.4435 (4.67 sec/step)
+INFO:tensorflow:global step 840: loss = 3.9474 (4.67 sec/step)
+INFO:tensorflow:global step 850: loss = 4.2108 (4.68 sec/step)
+INFO:tensorflow:global step 860: loss = 6.1249 (4.70 sec/step)
+INFO:tensorflow:global step 870: loss = 4.3284 (4.72 sec/step)
+INFO:tensorflow:global step 880: loss = 6.0568 (4.68 sec/step)
+INFO:tensorflow:global step 890: loss = 4.8502 (4.67 sec/step)
+INFO:tensorflow:global step 900: loss = 4.9346 (4.69 sec/step)
+INFO:tensorflow:global step 910: loss = 4.6580 (4.69 sec/step)
+INFO:tensorflow:global step 920: loss = 3.2616 (5.46 sec/step)
+INFO:tensorflow:global step 930: loss = 5.9776 (4.67 sec/step)
+INFO:tensorflow:global step 940: loss = 3.1342 (4.67 sec/step)
+INFO:tensorflow:global step 950: loss = 5.6217 (4.67 sec/step)
+INFO:tensorflow:global step 960: loss = 4.1933 (4.69 sec/step)
+INFO:tensorflow:global step 970: loss = 3.8317 (4.70 sec/step)
+INFO:tensorflow:global step 980: loss = 4.3006 (4.67 sec/step)
+INFO:tensorflow:global step 990: loss = 7.7407 (4.69 sec/step)
+INFO:tensorflow:global step 1000: loss = 4.3420 (4.69 sec/step)
+INFO:tensorflow:global step 1010: loss = 3.8616 (4.67 sec/step)
+INFO:tensorflow:global step 1020: loss = 3.6810 (4.92 sec/step)
+INFO:tensorflow:global step 1030: loss = 3.6348 (4.71 sec/step)
+INFO:tensorflow:global step 1040: loss = 6.8190 (4.68 sec/step)
+INFO:tensorflow:global step 1050: loss = 10.3507 (4.68 sec/step)
+INFO:tensorflow:global step 1060: loss = 8.2122 (4.67 sec/step)
+INFO:tensorflow:global step 1070: loss = 7.5104 (4.70 sec/step)
+INFO:tensorflow:global step 1080: loss = 5.6335 (4.69 sec/step)
+INFO:tensorflow:global step 1090: loss = 4.4556 (4.67 sec/step)
+INFO:tensorflow:global step 1100: loss = 5.3683 (4.65 sec/step)
+INFO:tensorflow:global step 1110: loss = 3.7190 (4.67 sec/step)
+INFO:tensorflow:global step 1120: loss = 4.2564 (4.72 sec/step)
+INFO:tensorflow:global step 1130: loss = 4.6360 (4.68 sec/step)
+INFO:tensorflow:global step 1140: loss = 4.9771 (4.68 sec/step)
+INFO:tensorflow:global step 1150: loss = 5.7276 (4.69 sec/step)
+INFO:tensorflow:global step 1160: loss = 3.1829 (4.68 sec/step)
+INFO:tensorflow:global step 1170: loss = 4.6056 (4.76 sec/step)
+INFO:tensorflow:global step 1180: loss = 4.2851 (4.69 sec/step)
+INFO:tensorflow:global step 1190: loss = 5.0042 (4.67 sec/step)
+INFO:tensorflow:global step 1200: loss = 4.2118 (4.69 sec/step)
+INFO:tensorflow:global step 1210: loss = 6.9018 (4.69 sec/step)
+INFO:tensorflow:global step 1220: loss = 5.5463 (4.72 sec/step)
+INFO:tensorflow:global step 1230: loss = 7.7273 (4.67 sec/step)
+INFO:tensorflow:global step 1240: loss = 5.4770 (4.67 sec/step)
+INFO:tensorflow:global step 1250: loss = 6.8073 (4.67 sec/step)
+INFO:tensorflow:global step 1260: loss = 4.8160 (4.68 sec/step)
+INFO:tensorflow:global step 1270: loss = 5.8815 (5.10 sec/step)
+INFO:tensorflow:global step 1280: loss = 5.5650 (4.67 sec/step)
+INFO:tensorflow:global step 1290: loss = 10.0465 (4.68 sec/step)
+INFO:tensorflow:global step 1300: loss = 4.3594 (4.69 sec/step)
+INFO:tensorflow:global step 1310: loss = 5.5793 (4.70 sec/step)
+INFO:tensorflow:global step 1320: loss = 5.1810 (4.70 sec/step)
+INFO:tensorflow:global step 1330: loss = 6.4477 (4.67 sec/step)
+INFO:tensorflow:global step 1340: loss = 6.0473 (4.69 sec/step)
+INFO:tensorflow:global step 1350: loss = 4.7879 (4.67 sec/step)
+INFO:tensorflow:global step 1360: loss = 5.7525 (4.69 sec/step)
+INFO:tensorflow:global step 1370: loss = 3.4742 (4.68 sec/step)
+INFO:tensorflow:global step 1380: loss = 4.5410 (4.69 sec/step)
+INFO:tensorflow:global step 1390: loss = 3.1667 (4.68 sec/step)
+INFO:tensorflow:global step 1400: loss = 3.1200 (4.69 sec/step)
+INFO:tensorflow:global step 1410: loss = 3.8808 (4.68 sec/step)
+INFO:tensorflow:global step 1420: loss = 5.4511 (4.72 sec/step)
+INFO:tensorflow:global step 1430: loss = 4.4003 (4.67 sec/step)
+INFO:tensorflow:global step 1440: loss = 6.3370 (4.67 sec/step)
+INFO:tensorflow:global step 1450: loss = 4.7453 (4.68 sec/step)
+INFO:tensorflow:global step 1460: loss = 3.4692 (4.69 sec/step)
+INFO:tensorflow:global step 1470: loss = 4.5106 (4.67 sec/step)
+INFO:tensorflow:global step 1480: loss = 4.3405 (4.69 sec/step)
+INFO:tensorflow:global step 1490: loss = 5.7104 (4.69 sec/step)
+INFO:tensorflow:global step 1500: loss = 6.8273 (4.71 sec/step)
+INFO:tensorflow:global step 1510: loss = 4.7222 (4.67 sec/step)
+INFO:tensorflow:global step 1520: loss = 3.6796 (4.74 sec/step)
+INFO:tensorflow:global step 1530: loss = 4.9637 (4.68 sec/step)
+INFO:tensorflow:global step 1540: loss = 4.0607 (4.69 sec/step)
+INFO:tensorflow:global step 1550: loss = 4.6627 (4.69 sec/step)
+INFO:tensorflow:global step 1560: loss = 3.4835 (4.68 sec/step)
+INFO:tensorflow:global step 1570: loss = 5.9155 (4.69 sec/step)
+INFO:tensorflow:global step 1580: loss = 4.7500 (4.69 sec/step)
+INFO:tensorflow:global step 1590: loss = 3.8692 (4.66 sec/step)
+INFO:tensorflow:global step 1600: loss = 5.7693 (4.70 sec/step)
+INFO:tensorflow:global step 1610: loss = 3.7698 (4.67 sec/step)
+INFO:tensorflow:global step 1620: loss = 5.5246 (4.68 sec/step)
+INFO:tensorflow:global step 1630: loss = 7.2184 (4.68 sec/step)
+INFO:tensorflow:global step 1640: loss = 6.4662 (4.67 sec/step)
+INFO:tensorflow:global step 1650: loss = 7.4504 (4.70 sec/step)
+INFO:tensorflow:global step 1660: loss = 4.9293 (4.69 sec/step)
+INFO:tensorflow:global step 1670: loss = 4.0124 (4.66 sec/step)
+INFO:tensorflow:global step 1680: loss = 4.4211 (4.68 sec/step)
+INFO:tensorflow:global step 1690: loss = 3.9913 (4.68 sec/step)
+INFO:tensorflow:global step 1700: loss = 4.9472 (4.68 sec/step)
+INFO:tensorflow:global step 1710: loss = 8.4556 (4.68 sec/step)
+INFO:tensorflow:global step 1720: loss = 9.0064 (4.67 sec/step)
+INFO:tensorflow:global step 1730: loss = 10.7402 (4.66 sec/step)
+INFO:tensorflow:global step 1740: loss = 10.9917 (4.67 sec/step)
+INFO:tensorflow:global step 1750: loss = 9.2899 (4.70 sec/step)
+INFO:tensorflow:global step 1760: loss = 9.8189 (4.69 sec/step)
+INFO:tensorflow:global step 1770: loss = 6.4466 (4.67 sec/step)
+INFO:tensorflow:global step 1780: loss = 7.1001 (4.69 sec/step)
+INFO:tensorflow:global step 1790: loss = 5.0231 (4.69 sec/step)
+INFO:tensorflow:global step 1800: loss = 8.5486 (4.69 sec/step)
+INFO:tensorflow:global step 1810: loss = 6.2016 (4.70 sec/step)
+INFO:tensorflow:global step 1820: loss = 5.2352 (4.67 sec/step)
+INFO:tensorflow:global step 1830: loss = 4.1501 (4.68 sec/step)
+INFO:tensorflow:global step 1840: loss = 3.7316 (4.67 sec/step)
+INFO:tensorflow:global step 1850: loss = 3.8681 (4.67 sec/step)
+INFO:tensorflow:global step 1860: loss = 4.2041 (4.71 sec/step)
+INFO:tensorflow:global step 1870: loss = 7.1110 (4.70 sec/step)
+INFO:tensorflow:global step 1880: loss = 4.0249 (4.71 sec/step)
+INFO:tensorflow:global step 1890: loss = 4.2988 (4.69 sec/step)
+INFO:tensorflow:global step 1900: loss = 4.7322 (4.68 sec/step)
+INFO:tensorflow:global step 1910: loss = 5.3777 (4.69 sec/step)
+INFO:tensorflow:global step 1920: loss = 6.1552 (4.69 sec/step)
+INFO:tensorflow:global step 1930: loss = 3.4349 (4.67 sec/step)
+INFO:tensorflow:global step 1940: loss = 4.1119 (4.68 sec/step)
+INFO:tensorflow:global step 1950: loss = 4.6925 (4.69 sec/step)
+INFO:tensorflow:global step 1960: loss = 5.1217 (4.70 sec/step)
+INFO:tensorflow:global step 1970: loss = 6.4010 (4.68 sec/step)
+INFO:tensorflow:global step 1980: loss = 5.0107 (4.66 sec/step)
+INFO:tensorflow:global step 1990: loss = 3.8478 (4.67 sec/step)
+INFO:tensorflow:global step 2000: loss = 4.1332 (4.69 sec/step)
+INFO:tensorflow:global step 2010: loss = 4.3245 (4.70 sec/step)
+INFO:tensorflow:global step 2020: loss = 11.2314 (4.68 sec/step)
+INFO:tensorflow:global step 2030: loss = 9.5717 (4.68 sec/step)
+INFO:tensorflow:global step 2040: loss = 13.6196 (4.69 sec/step)
+INFO:tensorflow:global step 2050: loss = 14.6248 (4.69 sec/step)
+INFO:tensorflow:global step 2060: loss = 4.7112 (4.68 sec/step)
+INFO:tensorflow:global step 2070: loss = 7.6442 (4.68 sec/step)
+INFO:tensorflow:global step 2080: loss = 4.9175 (4.67 sec/step)
+INFO:tensorflow:global step 2090: loss = 4.1937 (4.68 sec/step)
+INFO:tensorflow:global step 2100: loss = 6.1545 (4.71 sec/step)
+INFO:tensorflow:global step 2110: loss = 4.1917 (4.68 sec/step)
+INFO:tensorflow:global step 2120: loss = 6.6564 (4.68 sec/step)
+INFO:tensorflow:global step 2130: loss = 5.3791 (4.69 sec/step)
+INFO:tensorflow:global step 2140: loss = 9.3786 (4.68 sec/step)
+INFO:tensorflow:global step 2150: loss = 6.3107 (4.67 sec/step)
+INFO:tensorflow:global step 2160: loss = 12.0839 (4.68 sec/step)
+INFO:tensorflow:global step 2170: loss = 9.7226 (4.68 sec/step)
+INFO:tensorflow:global step 2180: loss = 7.2075 (4.66 sec/step)
+INFO:tensorflow:global step 2190: loss = 5.4296 (4.69 sec/step)
+INFO:tensorflow:global step 2200: loss = 5.0209 (4.68 sec/step)
+INFO:tensorflow:global step 2210: loss = 4.6197 (4.68 sec/step)
+INFO:tensorflow:global step 2220: loss = 6.5265 (4.67 sec/step)
+INFO:tensorflow:global step 2230: loss = 5.4040 (4.69 sec/step)
+INFO:tensorflow:global step 2240: loss = 3.9932 (4.68 sec/step)
+INFO:tensorflow:global step 2250: loss = 3.9815 (4.67 sec/step)
+INFO:tensorflow:global step 2260: loss = 3.7303 (4.70 sec/step)
+INFO:tensorflow:global step 2270: loss = 4.3973 (4.68 sec/step)
+INFO:tensorflow:global step 2280: loss = 4.6060 (4.70 sec/step)
+INFO:tensorflow:global step 2290: loss = 5.5073 (4.72 sec/step)
+INFO:tensorflow:global step 2300: loss = 5.4168 (4.69 sec/step)
+INFO:tensorflow:global step 2310: loss = 6.6458 (4.71 sec/step)
+INFO:tensorflow:global step 2320: loss = 7.0931 (4.68 sec/step)
+INFO:tensorflow:global step 2330: loss = 6.5578 (4.68 sec/step)
+INFO:tensorflow:global step 2340: loss = 4.2355 (4.68 sec/step)
+INFO:tensorflow:global step 2350: loss = 5.0234 (4.67 sec/step)
+INFO:tensorflow:global step 2360: loss = 5.0649 (4.69 sec/step)
+INFO:tensorflow:global step 2370: loss = 4.6807 (4.66 sec/step)
+INFO:tensorflow:global step 2380: loss = 4.3906 (4.69 sec/step)
+INFO:tensorflow:global step 2390: loss = 5.6966 (4.70 sec/step)
+INFO:tensorflow:global step 2400: loss = 4.3761 (4.67 sec/step)
+INFO:tensorflow:global step 2410: loss = 3.5548 (4.68 sec/step)
+INFO:tensorflow:global step 2420: loss = 6.3540 (4.68 sec/step)
+INFO:tensorflow:global step 2430: loss = 4.5779 (4.68 sec/step)
+INFO:tensorflow:global step 2440: loss = 10.0285 (4.69 sec/step)
+INFO:tensorflow:global step 2450: loss = 7.7016 (4.68 sec/step)
+INFO:tensorflow:global step 2460: loss = 8.7779 (4.68 sec/step)
+INFO:tensorflow:global step 2470: loss = 5.3815 (4.70 sec/step)
+INFO:tensorflow:global step 2480: loss = 7.9691 (4.69 sec/step)
+INFO:tensorflow:global step 2490: loss = 6.7864 (4.69 sec/step)
+INFO:tensorflow:global step 2500: loss = 6.2435 (4.68 sec/step)
+INFO:tensorflow:global step 2510: loss = 5.7212 (4.67 sec/step)
+INFO:tensorflow:global step 2520: loss = 6.9836 (4.66 sec/step)
+INFO:tensorflow:global step 2530: loss = 14.5183 (4.69 sec/step)
+INFO:tensorflow:global step 2540: loss = 9.4383 (4.69 sec/step)
+INFO:tensorflow:global step 2550: loss = 4.4882 (4.67 sec/step)
+INFO:tensorflow:global step 2560: loss = 4.9538 (4.66 sec/step)
+INFO:tensorflow:global step 2570: loss = 4.4629 (4.67 sec/step)
+INFO:tensorflow:global step 2580: loss = 4.8867 (4.67 sec/step)
+INFO:tensorflow:global step 2590: loss = 3.9886 (4.68 sec/step)
+INFO:tensorflow:global step 2600: loss = 4.2925 (4.67 sec/step)
+INFO:tensorflow:global step 2610: loss = 3.9664 (4.67 sec/step)
+INFO:tensorflow:global step 2620: loss = 3.9956 (4.67 sec/step)
+INFO:tensorflow:global step 2630: loss = 6.3486 (4.68 sec/step)
+INFO:tensorflow:global step 2640: loss = 10.1432 (4.68 sec/step)
+INFO:tensorflow:global step 2650: loss = 11.2279 (4.68 sec/step)
+INFO:tensorflow:global step 2660: loss = 7.3112 (4.67 sec/step)
+INFO:tensorflow:global step 2670: loss = 4.8463 (4.67 sec/step)
+INFO:tensorflow:global step 2680: loss = 6.5296 (4.67 sec/step)
+INFO:tensorflow:global step 2690: loss = 5.4671 (4.67 sec/step)
+INFO:tensorflow:global step 2700: loss = 5.1430 (4.68 sec/step)
+INFO:tensorflow:global step 2710: loss = 5.0571 (4.69 sec/step)
+INFO:tensorflow:global step 2720: loss = 5.6181 (4.69 sec/step)
+INFO:tensorflow:global step 2730: loss = 5.8169 (4.66 sec/step)
+INFO:tensorflow:global step 2740: loss = 6.4299 (4.68 sec/step)
+INFO:tensorflow:global step 2750: loss = 6.9042 (4.68 sec/step)
+INFO:tensorflow:global step 2760: loss = 9.9094 (4.67 sec/step)
+INFO:tensorflow:global step 2770: loss = 8.2436 (4.70 sec/step)
+INFO:tensorflow:global step 2780: loss = 12.0333 (4.67 sec/step)
+INFO:tensorflow:global step 2790: loss = 5.1761 (4.68 sec/step)
+INFO:tensorflow:global step 2800: loss = 6.8491 (4.68 sec/step)
+INFO:tensorflow:global step 2810: loss = 4.4532 (4.69 sec/step)
+INFO:tensorflow:global step 2820: loss = 4.3694 (4.68 sec/step)
+INFO:tensorflow:global step 2830: loss = 9.1707 (4.69 sec/step)
+INFO:tensorflow:global step 2840: loss = 7.8764 (4.68 sec/step)
+INFO:tensorflow:global step 2850: loss = 8.8277 (4.66 sec/step)
+INFO:tensorflow:global step 2860: loss = 12.5070 (4.71 sec/step)
+INFO:tensorflow:global step 2870: loss = 6.0886 (4.67 sec/step)
+INFO:tensorflow:global step 2880: loss = 6.8165 (4.68 sec/step)
+INFO:tensorflow:global step 2890: loss = 7.6270 (4.68 sec/step)
+INFO:tensorflow:global step 2900: loss = 8.1953 (4.68 sec/step)
+INFO:tensorflow:global step 2910: loss = 7.0095 (4.67 sec/step)
+INFO:tensorflow:global step 2920: loss = 6.0199 (4.69 sec/step)
+INFO:tensorflow:global step 2930: loss = 5.1247 (4.67 sec/step)
+INFO:tensorflow:global step 2940: loss = 4.1604 (4.68 sec/step)
+INFO:tensorflow:global step 2950: loss = 5.1138 (4.66 sec/step)
+INFO:tensorflow:global step 2960: loss = 8.6758 (4.71 sec/step)
+INFO:tensorflow:global step 2970: loss = 5.5610 (4.67 sec/step)
+INFO:tensorflow:global step 2980: loss = 6.3038 (4.68 sec/step)
+INFO:tensorflow:global step 2990: loss = 4.9375 (4.66 sec/step)
+INFO:tensorflow:global step 3000: loss = 7.0094 (4.67 sec/step)
+INFO:tensorflow:global step 3010: loss = 4.7389 (4.67 sec/step)
+INFO:tensorflow:global step 3020: loss = 3.8019 (4.67 sec/step)
+INFO:tensorflow:global step 3030: loss = 4.4263 (4.67 sec/step)
+INFO:tensorflow:global step 3040: loss = 4.7283 (4.67 sec/step)
+INFO:tensorflow:global step 3050: loss = 4.9006 (4.70 sec/step)
+INFO:tensorflow:global step 3060: loss = 3.8771 (4.66 sec/step)
+INFO:tensorflow:global step 3070: loss = 4.8020 (4.69 sec/step)
+INFO:tensorflow:global step 3080: loss = 3.0470 (4.68 sec/step)
+INFO:tensorflow:global step 3090: loss = 3.6790 (4.67 sec/step)
+INFO:tensorflow:global step 3100: loss = 3.6891 (4.69 sec/step)
+INFO:tensorflow:global step 3110: loss = 5.5416 (4.68 sec/step)
+INFO:tensorflow:global step 3120: loss = 5.6388 (4.67 sec/step)
+INFO:tensorflow:global step 3130: loss = 6.8879 (4.67 sec/step)
+INFO:tensorflow:global step 3140: loss = 5.0932 (4.67 sec/step)
+INFO:tensorflow:global step 3150: loss = 4.9176 (4.67 sec/step)
+INFO:tensorflow:global step 3160: loss = 5.6174 (4.70 sec/step)
+INFO:tensorflow:global step 3170: loss = 4.5295 (4.69 sec/step)
+INFO:tensorflow:global step 3180: loss = 4.1221 (4.67 sec/step)
+INFO:tensorflow:global step 3190: loss = 3.9587 (4.67 sec/step)
+INFO:tensorflow:global step 3200: loss = 3.4652 (4.69 sec/step)
+INFO:tensorflow:global step 3210: loss = 4.5061 (4.68 sec/step)
+INFO:tensorflow:global step 3220: loss = 6.7421 (4.69 sec/step)
+INFO:tensorflow:global step 3230: loss = 6.4081 (4.69 sec/step)
+INFO:tensorflow:global step 3240: loss = 6.9707 (4.68 sec/step)
+INFO:tensorflow:global step 3250: loss = 7.8963 (4.68 sec/step)
+INFO:tensorflow:global step 3260: loss = 8.5976 (4.68 sec/step)
+INFO:tensorflow:global step 3270: loss = 9.1857 (4.67 sec/step)
+INFO:tensorflow:global step 3280: loss = 7.1951 (4.68 sec/step)
+INFO:tensorflow:global step 3290: loss = 8.2103 (4.69 sec/step)
+INFO:tensorflow:global step 3300: loss = 8.1103 (4.70 sec/step)
+INFO:tensorflow:global step 3310: loss = 7.2373 (4.68 sec/step)
+INFO:tensorflow:global step 3320: loss = 4.7950 (4.67 sec/step)
+INFO:tensorflow:global step 3330: loss = 3.9583 (4.68 sec/step)
+INFO:tensorflow:global step 3340: loss = 4.5538 (4.67 sec/step)
+INFO:tensorflow:global step 3350: loss = 4.5889 (4.67 sec/step)
+INFO:tensorflow:global step 3360: loss = 5.3992 (4.69 sec/step)
+INFO:tensorflow:global step 3370: loss = 5.2846 (4.70 sec/step)
+INFO:tensorflow:global step 3380: loss = 4.5607 (4.66 sec/step)
+INFO:tensorflow:global step 3390: loss = 5.2159 (4.67 sec/step)
+INFO:tensorflow:global step 3400: loss = 5.7598 (4.66 sec/step)
+INFO:tensorflow:global step 3410: loss = 5.2914 (4.68 sec/step)
+INFO:tensorflow:global step 3420: loss = 4.9147 (4.68 sec/step)
+INFO:tensorflow:global step 3430: loss = 5.4090 (4.68 sec/step)
+INFO:tensorflow:global step 3440: loss = 5.0301 (4.70 sec/step)
+INFO:tensorflow:global step 3450: loss = 4.7103 (4.68 sec/step)
+INFO:tensorflow:global step 3460: loss = 4.4799 (4.70 sec/step)
+INFO:tensorflow:global step 3470: loss = 5.5238 (4.68 sec/step)
+INFO:tensorflow:global step 3480: loss = 4.8972 (4.66 sec/step)
+INFO:tensorflow:global step 3490: loss = 4.8387 (4.68 sec/step)
+INFO:tensorflow:global step 3500: loss = 4.6133 (4.67 sec/step)
+INFO:tensorflow:global step 3510: loss = 3.7641 (4.69 sec/step)
+INFO:tensorflow:global step 3520: loss = 4.4497 (4.66 sec/step)
+INFO:tensorflow:global step 3530: loss = 4.1099 (4.67 sec/step)
+INFO:tensorflow:global step 3540: loss = 3.7320 (4.66 sec/step)
+INFO:tensorflow:global step 3550: loss = 3.8237 (4.68 sec/step)
+INFO:tensorflow:global step 3560: loss = 4.5171 (4.67 sec/step)
+INFO:tensorflow:global step 3570: loss = 4.8293 (4.69 sec/step)
+INFO:tensorflow:global step 3580: loss = 5.4920 (4.68 sec/step)
+INFO:tensorflow:global step 3590: loss = 5.6282 (4.67 sec/step)
+INFO:tensorflow:global step 3600: loss = 5.5975 (4.69 sec/step)
+INFO:tensorflow:global step 3610: loss = 5.6520 (4.66 sec/step)
+INFO:tensorflow:global step 3620: loss = 4.0717 (4.71 sec/step)
+INFO:tensorflow:global step 3630: loss = 5.7905 (4.68 sec/step)
+INFO:tensorflow:global step 3640: loss = 6.2351 (4.67 sec/step)
+INFO:tensorflow:global step 3650: loss = 5.1843 (4.71 sec/step)
+INFO:tensorflow:global step 3660: loss = 4.4511 (4.68 sec/step)
+INFO:tensorflow:global step 3670: loss = 4.0347 (4.68 sec/step)
+INFO:tensorflow:global step 3680: loss = 3.1760 (4.70 sec/step)
+INFO:tensorflow:global step 3690: loss = 4.4986 (4.69 sec/step)
+INFO:tensorflow:global step 3700: loss = 6.3966 (4.69 sec/step)
+INFO:tensorflow:global step 3710: loss = 4.0152 (4.68 sec/step)
+INFO:tensorflow:global step 3720: loss = 5.1887 (4.71 sec/step)
+INFO:tensorflow:global step 3730: loss = 3.9185 (4.66 sec/step)
+INFO:tensorflow:global step 3740: loss = 4.2353 (4.67 sec/step)
+INFO:tensorflow:global step 3750: loss = 5.9541 (4.68 sec/step)
+INFO:tensorflow:global step 3760: loss = 3.9802 (4.67 sec/step)
+INFO:tensorflow:global step 3770: loss = 4.6324 (5.42 sec/step)
+INFO:tensorflow:global step 3780: loss = 4.4342 (4.68 sec/step)
+INFO:tensorflow:global step 3790: loss = 5.1445 (4.66 sec/step)
+INFO:tensorflow:global step 3800: loss = 3.5067 (4.67 sec/step)
+INFO:tensorflow:global step 3810: loss = 4.5013 (4.67 sec/step)
+INFO:tensorflow:global step 3820: loss = 4.9615 (4.71 sec/step)
+INFO:tensorflow:global step 3830: loss = 4.4583 (4.66 sec/step)
+INFO:tensorflow:global step 3840: loss = 3.9911 (4.67 sec/step)
+INFO:tensorflow:global step 3850: loss = 4.0119 (4.67 sec/step)
+INFO:tensorflow:global step 3860: loss = 4.7777 (4.67 sec/step)
+INFO:tensorflow:global step 3870: loss = 2.9162 (4.71 sec/step)
+INFO:tensorflow:global step 3880: loss = 5.0535 (4.69 sec/step)
+INFO:tensorflow:global step 3890: loss = 2.8359 (4.69 sec/step)
+INFO:tensorflow:global step 3900: loss = 2.5075 (4.67 sec/step)
+INFO:tensorflow:global step 3910: loss = 3.7697 (4.66 sec/step)
+INFO:tensorflow:global step 3920: loss = 4.7016 (4.73 sec/step)
+INFO:tensorflow:global step 3930: loss = 5.1689 (4.70 sec/step)
+INFO:tensorflow:global step 3940: loss = 4.8199 (4.67 sec/step)
+INFO:tensorflow:global step 3950: loss = 4.6891 (4.67 sec/step)
+INFO:tensorflow:global step 3960: loss = 4.1247 (4.68 sec/step)
+INFO:tensorflow:global step 3970: loss = 7.3596 (4.71 sec/step)
+INFO:tensorflow:global step 3980: loss = 8.2372 (4.68 sec/step)
+INFO:tensorflow:global step 3990: loss = 6.6864 (4.66 sec/step)
+INFO:tensorflow:global step 4000: loss = 6.3081 (4.69 sec/step)
+INFO:tensorflow:global step 4010: loss = 13.3240 (4.68 sec/step)
+INFO:tensorflow:global step 4020: loss = 5.1111 (4.88 sec/step)
+INFO:tensorflow:global step 4030: loss = 4.9914 (4.68 sec/step)
+INFO:tensorflow:global step 4040: loss = 5.8133 (4.68 sec/step)
+INFO:tensorflow:global step 4050: loss = 3.0201 (4.66 sec/step)
+INFO:tensorflow:global step 4060: loss = 4.0030 (4.67 sec/step)
+INFO:tensorflow:global step 4070: loss = 4.3569 (4.75 sec/step)
+INFO:tensorflow:global step 4080: loss = 4.7698 (4.69 sec/step)
+INFO:tensorflow:global step 4090: loss = 3.8046 (4.68 sec/step)
+INFO:tensorflow:global step 4100: loss = 4.6214 (4.67 sec/step)
+INFO:tensorflow:global step 4110: loss = 4.6304 (4.68 sec/step)
+INFO:tensorflow:global step 4120: loss = 5.2426 (4.72 sec/step)
+INFO:tensorflow:global step 4130: loss = 4.8669 (4.68 sec/step)
+INFO:tensorflow:global step 4140: loss = 4.9281 (4.70 sec/step)
+INFO:tensorflow:global step 4150: loss = 5.9496 (4.68 sec/step)
+INFO:tensorflow:global step 4160: loss = 12.0187 (4.68 sec/step)
+INFO:tensorflow:global step 4170: loss = 11.4060 (4.68 sec/step)
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.InvalidArgumentError'>, All bounding box coordinates must be in [0.0, 1.0]: 1.0007813
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+Caused by op 'ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox', defined at:
+  File "train_ssd_network.py", line 389, in <module>
+    tf.app.run()
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 48, in run
+    _sys.exit(main(_sys.argv[:1] + flags_passthrough))
+  File "train_ssd_network.py", line 239, in main
+    image_preprocessing_fn(image, glabels, gbboxes, ssd_shape)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/preprocessing_factory.py", line 59, in preprocessing_fn
+    is_training=is_training, **kwargs)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 395, in preprocess_image
+    data_format=data_format)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 270, in preprocess_for_train
+    aspect_ratio_range=CROP_RATIO_RANGE)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 217, in distorted_bounding_box_crop
+    use_image_if_no_bounding_boxes=True)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/ops/gen_image_ops.py", line 989, in sample_distorted_bounding_box
+    name=name)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
+    op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 2336, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1228, in __init__
+    self._traceback = _extract_stack()
+
+InvalidArgumentError (see above for traceback): All bounding box coordinates must be in [0.0, 1.0]: 1.0007813
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+INFO:tensorflow:Finished training! Saving model to disk.
+
+Traceback (most recent call last):
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1039, in _do_call
+    return fn(*args)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1021, in _run_fn
+    status, run_metadata)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.InvalidArgumentError: All bounding box coordinates must be in [0.0, 1.0]: 1.0007813
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "train_ssd_network.py", line 389, in <module>
+    tf.app.run()
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 48, in run
+    _sys.exit(main(_sys.argv[:1] + flags_passthrough))
+  File "train_ssd_network.py", line 385, in main
+    sync_optimizer=None)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/contrib/slim/python/slim/learning.py", line 752, in train
+    sv.saver.save(sess, sv.save_path, global_step=sv.global_step)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/supervisor.py", line 960, in managed_session
+    self.stop(close_summary_writer=close_summary_writer)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/supervisor.py", line 788, in stop
+    stop_grace_period_secs=self._stop_grace_secs)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/coordinator.py", line 389, in join
+    six.reraise(*self._exc_info_to_raise)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/six.py", line 686, in reraise
+    raise value
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/training/queue_runner_impl.py", line 234, in _run
+    sess.run(enqueue_op)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 778, in run
+    run_metadata_ptr)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 982, in _run
+    feed_dict_string, options, run_metadata)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1032, in _do_run
+    target_list, options, run_metadata)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1052, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.InvalidArgumentError: All bounding box coordinates must be in [0.0, 1.0]: 1.0007813
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
+Caused by op 'ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox', defined at:
+  File "train_ssd_network.py", line 389, in <module>
+    tf.app.run()
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 48, in run
+    _sys.exit(main(_sys.argv[:1] + flags_passthrough))
+  File "train_ssd_network.py", line 239, in main
+    image_preprocessing_fn(image, glabels, gbboxes, ssd_shape)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/preprocessing_factory.py", line 59, in preprocessing_fn
+    is_training=is_training, **kwargs)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 395, in preprocess_image
+    data_format=data_format)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 270, in preprocess_for_train
+    aspect_ratio_range=CROP_RATIO_RANGE)
+  File "/home/deeplearner/Desktop/Comp_Vision/SSD-Tensorflow/preprocessing/ssd_vgg_preprocessing.py", line 217, in distorted_bounding_box_crop
+    use_image_if_no_bounding_boxes=True)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/ops/gen_image_ops.py", line 989, in sample_distorted_bounding_box
+    name=name)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
+    op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 2336, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/home/deeplearner/Desktop/Comp_Vision/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1228, in __init__
+    self._traceback = _extract_stack()
+
+InvalidArgumentError (see above for traceback): All bounding box coordinates must be in [0.0, 1.0]: 1.0007813
+	 [[Node: ssd_preprocessing_train/distorted_bounding_box_crop/SampleDistortedBoundingBox = SampleDistortedBoundingBox[T=DT_INT32, area_range=[0.1, 1], aspect_ratio_range=[0.8, 1.2], max_attempts=200, min_object_covered=0.05, seed=0, seed2=0, use_image_if_no_bounding_boxes=true, _device="/job:localhost/replica:0/task:0/cpu:0"](ssd_preprocessing_train/distorted_bounding_box_crop/Shape, ssd_preprocessing_train/distorted_bounding_box_crop/ExpandDims)]]
+
