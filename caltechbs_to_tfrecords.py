@@ -178,7 +178,7 @@ def main(_):
     print('jpeg path: ', jpeg_path)
     print('annotations_path: ', annotations_path)
     set_directories = sorted(os.listdir(jpeg_path))
-"""
+    """
     i = 0
     train_directories = []
     test_directories = []
@@ -188,7 +188,7 @@ def main(_):
         else:
             test_directories.append(set_directory)
         i += 1
-"""
+    """
     annotations_file = annotations_path+'annotations.json'
     annotations_text = open(annotations_file)
     annotations_json = json.load(annotations_text)
