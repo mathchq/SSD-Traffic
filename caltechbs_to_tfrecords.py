@@ -84,7 +84,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                             ymax,
                             xmax
                             ))
-                    if object_dict['ocl'] == 1:
+                    if object_dict['occl'] == 1:
                         truncated_f.append(1)   
                     else:
                         truncated_f.append(0)
