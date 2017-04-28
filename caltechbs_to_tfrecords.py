@@ -84,15 +84,23 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                             ymax,
                             xmax
                             ))
-
+                    if object_dict['ocl'] == 1:
+                        truncated_f.append(1)   
+                    else:
+                        truncated_f.append(0)
+                    difficult_f.append(0)
+                else if object_dict['lbl'] == 'person?':
+                    truncated_f.append(0)
+                    difficult_f.append(1)
+                else:
+                    truncated_f.append(0)
+                    difficult_f.append(0)
                 # Can check whether the object is occluded or not by 
                 # accessing object_dict['ocl'] == 1, if its 1, then it
                 # is occluded.  The associated bbox for the predicted
                 # object (predicting stuff thats not occluded) is then
                 # object_dict['pos'].  If you just want the bbox for
                 # what's visible, do object_dict['posv']
-                difficult_f.append(0)
-                truncated_f.append(0)
             bboxes.append(bboxes_f)
             labels.append(labels_f)
             labels_text.append(labels_text_f)
