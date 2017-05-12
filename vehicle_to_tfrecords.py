@@ -54,10 +54,8 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
         truncated = []
 
         for frame in images:
-            frame_num,frame_ext = os.path.splitext(frame)
-            frame_num = int(frame_num)
-            print(frame_num)
-            """
+            frame_num = int(frame[:-4])
+            #print(frame_num)
             if (frame_num <= 3600):
                 sys.stdout.write('\r>> Annotating image %d' % (frame_num))
                 bboxes_f = []
@@ -82,11 +80,10 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                 labels_text.append(labels_text_f)
                 difficult.append(difficult_f)
                 truncated.append(truncated_f)
-            """
-        #print(len(bboxes))
-"""
-        for frame in images:
-            frame_num = int(os.path.splitext(frame)[0])
+        print(len(bboxes))
+
+        for i, frame in enumerate(images):
+            frame_num = int(frame[:-4])
             if (frame_num <= 3600):
                 sys.stdout.write('\r>> Converting image %d' % (frame_num))
                 sys.stdout.flush()
@@ -99,7 +96,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                 xmax = []
                 ymax = []
 
-                for b in bboxes[frame_num]:
+                for b in bboxes[i]:
                     [l.append(point) for l, point in zip([xmin, ymin, xmax, ymax], b)]
 
                 image_format = b'JPEG'
@@ -112,10 +109,10 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                     'image/object/bbox/xmax': float_feature(xmax),
                     'image/object/bbox/ymin': float_feature(ymin),
                     'image/object/bbox/ymax': float_feature(ymax),
-                    'image/object/bbox/label': int64_feature(labels[frame_num]),
-                    'image/object/bbox/label_text': bytes_feature(labels_text[frame_num]),
-                    'image/object/bbox/difficult': int64_feature(difficult[frame_num]),
-                    'image/object/bbox/truncated': int64_feature(truncated[frame_num]),
+                    'image/object/bbox/label': int64_feature(labels[i]),
+                    'image/object/bbox/label_text': bytes_feature(labels_text[i]),
+                    'image/object/bbox/difficult': int64_feature(difficult[i]),
+                    'image/object/bbox/truncated': int64_feature(truncated[i]),
                     'image/format': bytes_feature(image_format),
                     'image/encoded': bytes_feature(image_data)}))
                 tfrecord_writer.write(example.SerializeToString())
