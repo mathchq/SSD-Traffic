@@ -180,8 +180,8 @@ def main(_):
             annotations.json
     """
 
-    jpeg_path = os.path.join('./datasets', 'JPEGImages/')
-    annotations_path = os.path.join('./datasets', 'Annotations/')
+    jpeg_path = os.path.join('./datasets', 'JPEGImages_Vehicle/')
+    annotations_path = os.path.join('./datasets', 'Annotations_Vehicle/')
     print('jpeg path: ', jpeg_path)
     print('annotations_path: ', annotations_path)
     set_directories = sorted(os.listdir(jpeg_path))
