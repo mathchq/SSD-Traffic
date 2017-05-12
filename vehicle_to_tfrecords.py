@@ -56,7 +56,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
         for frame in images:
             frame_num = int(os.path.splitext(frame)[0])
             if (frame_num <= 3600):
-                sys.stdout.write('\r>> Annotating image %d/%d' % (frame_num + 1, len(images)))
+                sys.stdout.write('\r>> Annotating image %d/%d' % (frame_num))
                 bboxes_f = []
                 labels_f = []
                 labels_text_f = []
@@ -83,7 +83,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
         for frame in images:
             frame_num = int(os.path.splitext(frame)[0])
             if (frame_num <= 3600):
-                sys.stdout.write('\r>> Converting image %d/%d' % (frame_num + 1, len(images)))
+                sys.stdout.write('\r>> Converting image %d/%d' % (frame_num))
                 sys.stdout.flush()
 
                 image_file = image_path+frame
