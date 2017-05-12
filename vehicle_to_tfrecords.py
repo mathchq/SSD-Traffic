@@ -24,11 +24,15 @@ from datasets.caltechbs_common import LABELS
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
 
 def annotationsparse(annotations_file):
+    annotations = {}
     fyle = open(annotations_file)
     for lyne in fyle:
         trackid, xmin, ymin, xmax, ymax, frame, lost, occluded, generated, label = lyne.split()
-        print(lyne.split())
-
+        #print(lyne.split())
+        if (lost == 0 && occluded == 0):
+            annotations[frame].append([xmin, ymin, xmax, ymax])
+    print(annotations)
+    fyle.close()
 
 def write_images_from_directory(set_directory_name, set_directory_path, annotations_file, tfrecord_writer):
     sequences = sorted(os.listdir(set_directory_path))
