@@ -57,7 +57,8 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             frame_num = int(frame[:-4])
             #print(frame_num)
             if (frame_num <= 3600):
-                sys.stdout.write('\r>> Annotating image %d' % (frame_num))
+                #sys.stdout.write('\r>> Annotating image %d' % (frame_num))
+                print('Annotating image' + frame_num)
                 bboxes_f = []
                 labels_f = []
                 labels_text_f = []
@@ -85,8 +86,9 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
         for i, frame in enumerate(images):
             frame_num = int(frame[:-4])
             if (frame_num <= 3600):
-                sys.stdout.write('\r>> Converting image %d' % (frame_num))
-                sys.stdout.flush()
+                #sys.stdout.write('\r>> Converting image %d' % (frame_num))
+                #sys.stdout.flush()
+                print('Converting image' + frame_num)
 
                 image_file = image_path+frame
                 image_data = tf.gfile.FastGFile(image_file, 'rb').read()
