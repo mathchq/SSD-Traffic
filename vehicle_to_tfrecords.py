@@ -105,10 +105,10 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                 'image/object/bbox/xmax': float_feature(xmax),
                 'image/object/bbox/ymin': float_feature(ymin),
                 'image/object/bbox/ymax': float_feature(ymax),
-                'image/object/bbox/label': int64_feature(labels[i]),
-                'image/object/bbox/label_text': bytes_feature(labels_text[i]),
-                'image/object/bbox/difficult': int64_feature(difficult[i]),
-                'image/object/bbox/truncated': int64_feature(truncated[i]),
+                'image/object/bbox/label': int64_feature(labels[frame_num]),
+                'image/object/bbox/label_text': bytes_feature(labels_text[frame_num]),
+                'image/object/bbox/difficult': int64_feature(difficult[frame_num]),
+                'image/object/bbox/truncated': int64_feature(truncated[frame_num]),
                 'image/format': bytes_feature(image_format),
                 'image/encoded': bytes_feature(image_data)}))
             tfrecord_writer.write(example.SerializeToString())
