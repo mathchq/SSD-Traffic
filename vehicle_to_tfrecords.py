@@ -23,10 +23,17 @@ import json
 from datasets.caltechbs_common import LABELS
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
 
-def write_images_from_directory(set_directory_name, set_directory_path, annotations_json, tfrecord_writer):
+def annotationsparse(annotations_file):
+    fyle = open(annotations_file)
+    for lyne in fyle:
+        trackid, xmin, ymin, xmax, ymax, frame, lost, occluded, generated, label = lyne.split()
+        print(lyne.split())
+
+
+def write_images_from_directory(set_directory_name, set_directory_path, annotations_file, tfrecord_writer):
     sequences = sorted(os.listdir(set_directory_path))
     for sequence in sequences:
-        annotations_frames = annotations_json[set_directory_name][sequence]['frames']
+        annotations_frames = annotations_file[set_directory_name][sequence]['frames']
         image_path = os.path.join(set_directory_path, sequence + '/')
         images = sorted(os.listdir(image_path))
 
@@ -144,15 +151,15 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
 def main(_):
     print('Dataset directory: ./datasets')
     print('Output directory: ./datasets')
-    print('Output name: caltechbs')
+    print('Output name: vehicle')
 
-    tf_filename_train = './datasets/caltechbs_train.tfrecord'
+    tf_filename_train = './datasets/vehicle_train.tfrecord'
     if tf.gfile.Exists(tf_filename_train):
-        print('Dataset file: caltechbs_train already exist. Exiting without re-creating them.')
+        print('Dataset file: vehicle_train already exist. Exiting without re-creating them.')
         return
-    tf_filename_val = './datasets/caltechbs_test.tfrecord'
+    tf_filename_val = './datasets/vehicle_test.tfrecord'
     if tf.gfile.Exists(tf_filename_val):
-        print('Dataset file: caltechbs_val already exists. Exiting without re-creating them.')
+        print('Dataset file: vehicle_val already exists. Exiting without re-creating them.')
         return
 
     """
@@ -188,29 +195,32 @@ def main(_):
         else:
             test_directories.append(set_directory)
         i += 1
-    """
+    
     annotations_file = annotations_path+'annotations.json'
     annotations_text = open(annotations_file)
-    annotations_json = json.load(annotations_text)
-
+    annotations_file = json.load(annotations_text)
+    """
     with tf.python_io.TFRecordWriter(tf_filename_train) as tfrecord_writer:
         #for set_directory in train_directories:
         for set_directory in set_directories:
+            annotations_file = annotations_path+set_directory+'.txt'
+            annotations_file = annotationsparse(annotations_file)
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
-            write_images_from_directory(set_directory, set_directory_path, annotations_json, tfrecord_writer)
+            #write_images_from_directory(set_directory, set_directory_path, annotations_file, tfrecord_writer)
 
     """
     I have val and train as the same here.  Keeping it as we want results lol
     """
-
+"""
     with tf.python_io.TFRecordWriter(tf_filename_val) as tfrecord_writer:
         #for set_directory in test_directories:
         for set_directory in set_directories:
+            annotations_file = annotations_path+set_directory+'.txt'
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
-            write_images_from_directory(set_directory, set_directory_path, annotations_json, tfrecord_writer)
+            write_images_from_directory(set_directory, set_directory_path, annotations_file, tfrecord_writer)
 
     print('\nFinished converting the Caltech dataset!')
-
+"""
 if __name__ == '__main__':
     tf.app.run()
 
