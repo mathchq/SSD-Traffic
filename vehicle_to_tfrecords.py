@@ -84,7 +84,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             sys.stdout.write('\r>> Converting image %d/%d' % (frame_num + 1, len(images)))
             sys.stdout.flush()
 
-            image_file = image_path+imagename
+            image_file = image_path+frame
             image_data = tf.gfile.FastGFile(image_file, 'rb').read()
 
             xmin = []
