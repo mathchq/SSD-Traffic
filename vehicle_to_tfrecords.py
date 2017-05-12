@@ -31,7 +31,7 @@ def annotationsparse(annotations_file):
     for lyne in fyle:
         trackid, xmin, ymin, xmax, ymax, frame, lost, occluded, generated, label = lyne.split()
         #print(lyne.split())
-        if (lost == 0 and occluded == 0):
+        if ((lost == 0) and (occluded == 0)):
             annotations[frame].append([xmin, ymin, xmax, ymax])
     print(annotations)
     fyle.close()
