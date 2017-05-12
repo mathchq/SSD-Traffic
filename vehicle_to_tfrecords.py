@@ -22,7 +22,7 @@ import json
 from collections import defaultdict
 import pprint
 
-from datasets.caltechbs_common import LABELS
+from datasets.vehicle_common import LABELS
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
 
 def annotationsparse(annotations_file):
@@ -32,14 +32,14 @@ def annotationsparse(annotations_file):
         trackid, xmin, ymin, xmax, ymax, frame, lost, occluded, generated, label = lyne.split()
         #print(lyne.split())
         if (int(lost) == 0 and int(occluded) == 0):
-            annotations[int(frame)].append([int(xmin), int(ymin), int(xmax), int(ymax)])
-    print(annotations)
+            annotations[int(frame)].append((int(xmin), int(ymin), int(xmax), int(ymax)))
     fyle.close()
+    return annotations
 
 def write_images_from_directory(set_directory_name, set_directory_path, annotations_file, tfrecord_writer):
     sequences = sorted(os.listdir(set_directory_path))
     for sequence in sequences:
-        annotations_frames = annotations_file[set_directory_name][sequence]['frames']
+        #annotations_frames = annotations_file[set_directory_name][sequence]['frames']
         image_path = os.path.join(set_directory_path, sequence + '/')
         images = sorted(os.listdir(image_path))
 
@@ -53,8 +53,9 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
         difficult = []
         truncated = []
 
-        for frame in range(len(images)):
-            sys.stdout.write('\r>> Annotating image %d/%d' % (frame + 1, len(images)))
+        for frame in images:
+            frame_num = int(os.path.splitext(frame)[0])
+            sys.stdout.write('\r>> Annotating image %d/%d' % (frame_num + 1, len(images)))
             bboxes_f = []
             labels_f = []
             labels_text_f = []
@@ -62,66 +63,24 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             truncated_f = []
 
             object_dicts_list = []
-            if str(frame) in annotations_frames:
-                object_dicts_list = annotations_frames[str(frame)]
+            object_dicts_list = annotations_file[frame_num]
 
             for object_dict in object_dicts_list:
-                if object_dict['lbl'] == 'person':
-                    #Classify further into person_full and person_occluded
-                    label_f = 'person'
-                    labels_f.append(int(LABELS[label_f][0]))
-                    labels_text_f.append(label_f.encode('ascii'))
+                labels_f.append(int(LABELS['label_f'][0]))
+                labels_text_f.append(label_f.encode('ascii'))
 
-                    pos = object_dict['pos']
-
-                    ymin = float(pos[1]) / input_height
-                    if ymin < 0.0:
-                        ymin = 0.0
-                    if float(pos[1]) + float(pos[3]) > input_height:
-                        print("FRAME height:", frame, pos[1], pos[3])
-                        ymax = 1.0
-                    else:
-                        ymax = (float(pos[1]) + float(pos[3])) / input_height
-                    xmin = float(pos[0]) / input_width
-                    if xmin < 0.0:
-                        xmin = 0.0
-                    if float(pos[0]) + float(pos[2]) > input_width:
-                        print("FRAME width:", frame, pos[0], pos[2])
-                        xmax = 1.0
-                    else:
-                        xmax = (float(pos[0]) + float(pos[2])) / input_width
-
-
-                    bboxes_f.append((ymin,
-                            xmin,
-                            ymax,
-                            xmax
-                            ))
-                    if object_dict['occl'] == 1:
-                        truncated_f.append(1)   
-                    else:
-                        truncated_f.append(0)
-                    difficult_f.append(0)
-                #elif object_dict['lbl'] == 'person?':
-                #    truncated_f.append(0)
-                #    difficult_f.append(1)
-                #else:
-                #    truncated_f.append(0)
-                #    difficult_f.append(0)
-                # Can check whether the object is occluded or not by 
-                # accessing object_dict['ocl'] == 1, if its 1, then it
-                # is occluded.  The associated bbox for the predicted
-                # object (predicting stuff thats not occluded) is then
-                # object_dict['pos'].  If you just want the bbox for
-                # what's visible, do object_dict['posv']
+                bboxes_f.append(object_dict)
+                difficult_f.append(0)
+                truncated_f.append(0)
             bboxes.append(bboxes_f)
             labels.append(labels_f)
             labels_text.append(labels_text_f)
             difficult.append(difficult_f)
             truncated.append(truncated_f)
 
-        for i, imagename in enumerate(images):
-            sys.stdout.write('\r>> Converting image %d/%d' % (i + 1, len(images)))
+        for frame in images:
+            frame_num = int(os.path.splitext(frame)[0])
+            sys.stdout.write('\r>> Converting image %d/%d' % (frame_num + 1, len(images)))
             sys.stdout.flush()
 
             image_file = image_path+imagename
@@ -132,10 +91,9 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             xmax = []
             ymax = []
 
-            for b in bboxes[i]:
+            for b in bboxes[frame_num]:
                 [l.append(point) for l, point in zip([xmin, ymin, xmax, ymax], b)]
 
-#            if len(bboxes[i]) != 0:
             image_format = b'JPEG'
             example = tf.train.Example(features=tf.train.Features(feature={
                 'image/height': int64_feature(input_height),
@@ -210,24 +168,23 @@ def main(_):
         #for set_directory in train_directories:
         for set_directory in set_directories:
             annotations_file = annotations_path+set_directory+'.txt'
-            print(annotations_file)
-            annotations_file = annotationsparse(annotations_file)
+            #print(annotations_file)
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
-            #write_images_from_directory(set_directory, set_directory_path, annotations_file, tfrecord_writer)
+            write_images_from_directory(set_directory, set_directory_path, annotationsparse(annotations_file), tfrecord_writer)
 
     """
     I have val and train as the same here.  Keeping it as we want results lol
     """
-"""
+
     with tf.python_io.TFRecordWriter(tf_filename_val) as tfrecord_writer:
         #for set_directory in test_directories:
         for set_directory in set_directories:
             annotations_file = annotations_path+set_directory+'.txt'
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
-            write_images_from_directory(set_directory, set_directory_path, annotations_file, tfrecord_writer)
+            write_images_from_directory(set_directory, set_directory_path, annotationsparse(annotations_file), tfrecord_writer)
 
     print('\nFinished converting the Caltech dataset!')
-"""
+
 if __name__ == '__main__':
     tf.app.run()
 
