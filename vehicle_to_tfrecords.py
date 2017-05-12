@@ -79,7 +79,8 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                 labels_text.append(labels_text_f)
                 difficult.append(difficult_f)
                 truncated.append(truncated_f)
-
+        print(len(bboxes))
+"""
         for frame in images:
             frame_num = int(os.path.splitext(frame)[0])
             if (frame_num <= 3600):
@@ -114,7 +115,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                     'image/format': bytes_feature(image_format),
                     'image/encoded': bytes_feature(image_data)}))
                 tfrecord_writer.write(example.SerializeToString())
-
+"""
 def main(_):
     print('Dataset directory: ./datasets')
     print('Output directory: ./datasets')
