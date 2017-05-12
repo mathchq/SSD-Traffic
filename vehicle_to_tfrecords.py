@@ -32,7 +32,8 @@ def annotationsparse(annotations_file):
         #print(lyne.split())
         if (lost == 0 and occluded == 0):
             annotations[frame].append([xmin, ymin, xmax, ymax])
-    print(annotations)
+    for k, v in annotations.items():
+        print(k, v)
     fyle.close()
 
 def write_images_from_directory(set_directory_name, set_directory_path, annotations_file, tfrecord_writer):
