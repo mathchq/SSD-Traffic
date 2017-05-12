@@ -19,12 +19,13 @@ import tensorflow as tf
 import os
 import sys
 import json
+from collections import defaultdict
 
 from datasets.caltechbs_common import LABELS
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
 
 def annotationsparse(annotations_file):
-    annotations = {}
+    annotations = defaultdict(list)
     fyle = open(annotations_file)
     for lyne in fyle:
         trackid, xmin, ymin, xmax, ymax, frame, lost, occluded, generated, label = lyne.split()
