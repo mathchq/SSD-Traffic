@@ -54,9 +54,9 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
         truncated = []
 
         for frame in images:
-            #frame_num,frame_ext = os.path.splitext(frame)
-            #frame_num = int(frame_num)
-            print(frame)
+            frame_num,frame_ext = os.path.splitext(frame)
+            frame_num = int(frame_num)
+            print(frame_num)
             """
             if (frame_num <= 3600):
                 sys.stdout.write('\r>> Annotating image %d' % (frame_num))
@@ -83,7 +83,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                 difficult.append(difficult_f)
                 truncated.append(truncated_f)
             """
-        print(len(bboxes))
+        #print(len(bboxes))
 """
         for frame in images:
             frame_num = int(os.path.splitext(frame)[0])
