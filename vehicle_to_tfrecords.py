@@ -33,7 +33,7 @@ def annotationsparse(annotations_file):
         #print(lyne.split())
         if (lost == 0 and occluded == 0):
             annotations[frame].append([xmin, ymin, xmax, ymax])
-    pprint(dict(annotations))
+    print(annotations)
     fyle.close()
 
 def write_images_from_directory(set_directory_name, set_directory_path, annotations_file, tfrecord_writer):
@@ -210,6 +210,7 @@ def main(_):
         #for set_directory in train_directories:
         for set_directory in set_directories:
             annotations_file = annotations_path+set_directory+'.txt'
+            print(annotations_file)
             annotations_file = annotationsparse(annotations_file)
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')
             #write_images_from_directory(set_directory, set_directory_path, annotations_file, tfrecord_writer)
