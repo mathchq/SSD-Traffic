@@ -116,7 +116,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                     'image/format': bytes_feature(image_format),
                     'image/encoded': bytes_feature(image_data)}))
                 tfrecord_writer.write(example.SerializeToString())
-"""
+
 def main(_):
     print('Dataset directory: ./datasets')
     print('Output directory: ./datasets')
