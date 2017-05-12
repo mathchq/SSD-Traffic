@@ -20,6 +20,7 @@ import os
 import sys
 import json
 from collections import defaultdict
+import pprint
 
 from datasets.caltechbs_common import LABELS
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
@@ -32,8 +33,7 @@ def annotationsparse(annotations_file):
         #print(lyne.split())
         if (lost == 0 and occluded == 0):
             annotations[frame].append([xmin, ymin, xmax, ymax])
-    for k, v in annotations.items():
-        print(k, v)
+    pprint(dict(annotations))
     fyle.close()
 
 def write_images_from_directory(set_directory_name, set_directory_path, annotations_file, tfrecord_writer):
