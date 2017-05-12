@@ -66,7 +66,8 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             object_dicts_list = annotations_file[frame_num]
 
             for object_dict in object_dicts_list:
-                labels_f.append(int(LABELS['car'][0]))
+                label_f = 'car'
+                labels_f.append(int(LABELS[label_f][0]))
                 labels_text_f.append(label_f.encode('ascii'))
 
                 bboxes_f.append(object_dict)
