@@ -55,63 +55,65 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
 
         for frame in images:
             frame_num = int(os.path.splitext(frame)[0])
-            sys.stdout.write('\r>> Annotating image %d/%d' % (frame_num + 1, len(images)))
-            bboxes_f = []
-            labels_f = []
-            labels_text_f = []
-            difficult_f = []
-            truncated_f = []
+            if (frame_num <= 3600):
+                sys.stdout.write('\r>> Annotating image %d/%d' % (frame_num + 1, len(images)))
+                bboxes_f = []
+                labels_f = []
+                labels_text_f = []
+                difficult_f = []
+                truncated_f = []
 
-            object_dicts_list = []
-            object_dicts_list = annotations_file[frame_num]
+                object_dicts_list = []
+                object_dicts_list = annotations_file[frame_num]
 
-            for object_dict in object_dicts_list:
-                label_f = 'car'
-                labels_f.append(int(LABELS[label_f][0]))
-                labels_text_f.append(label_f.encode('ascii'))
+                for object_dict in object_dicts_list:
+                    label_f = 'car'
+                    labels_f.append(int(LABELS[label_f][0]))
+                    labels_text_f.append(label_f.encode('ascii'))
 
-                bboxes_f.append(object_dict)
-                difficult_f.append(0)
-                truncated_f.append(0)
-            bboxes.append(bboxes_f)
-            labels.append(labels_f)
-            labels_text.append(labels_text_f)
-            difficult.append(difficult_f)
-            truncated.append(truncated_f)
+                    bboxes_f.append(object_dict)
+                    difficult_f.append(0)
+                    truncated_f.append(0)
+                bboxes.append(bboxes_f)
+                labels.append(labels_f)
+                labels_text.append(labels_text_f)
+                difficult.append(difficult_f)
+                truncated.append(truncated_f)
 
         for frame in images:
             frame_num = int(os.path.splitext(frame)[0])
-            sys.stdout.write('\r>> Converting image %d/%d' % (frame_num + 1, len(images)))
-            sys.stdout.flush()
+            if (frame_num <= 3600):
+                sys.stdout.write('\r>> Converting image %d/%d' % (frame_num + 1, len(images)))
+                sys.stdout.flush()
 
-            image_file = image_path+frame
-            image_data = tf.gfile.FastGFile(image_file, 'rb').read()
+                image_file = image_path+frame
+                image_data = tf.gfile.FastGFile(image_file, 'rb').read()
 
-            xmin = []
-            ymin = []
-            xmax = []
-            ymax = []
+                xmin = []
+                ymin = []
+                xmax = []
+                ymax = []
 
-            for b in bboxes[frame_num]:
-                [l.append(point) for l, point in zip([xmin, ymin, xmax, ymax], b)]
+                for b in bboxes[frame_num]:
+                    [l.append(point) for l, point in zip([xmin, ymin, xmax, ymax], b)]
 
-            image_format = b'JPEG'
-            example = tf.train.Example(features=tf.train.Features(feature={
-                'image/height': int64_feature(input_height),
-                'image/width': int64_feature(input_width),
-                'image/channels': int64_feature(input_depth),
-                'image/shape': int64_feature([input_height, input_width, input_depth]),
-                'image/object/bbox/xmin': float_feature(xmin),
-                'image/object/bbox/xmax': float_feature(xmax),
-                'image/object/bbox/ymin': float_feature(ymin),
-                'image/object/bbox/ymax': float_feature(ymax),
-                'image/object/bbox/label': int64_feature(labels[frame_num]),
-                'image/object/bbox/label_text': bytes_feature(labels_text[frame_num]),
-                'image/object/bbox/difficult': int64_feature(difficult[frame_num]),
-                'image/object/bbox/truncated': int64_feature(truncated[frame_num]),
-                'image/format': bytes_feature(image_format),
-                'image/encoded': bytes_feature(image_data)}))
-            tfrecord_writer.write(example.SerializeToString())
+                image_format = b'JPEG'
+                example = tf.train.Example(features=tf.train.Features(feature={
+                    'image/height': int64_feature(input_height),
+                    'image/width': int64_feature(input_width),
+                    'image/channels': int64_feature(input_depth),
+                    'image/shape': int64_feature([input_height, input_width, input_depth]),
+                    'image/object/bbox/xmin': float_feature(xmin),
+                    'image/object/bbox/xmax': float_feature(xmax),
+                    'image/object/bbox/ymin': float_feature(ymin),
+                    'image/object/bbox/ymax': float_feature(ymax),
+                    'image/object/bbox/label': int64_feature(labels[frame_num]),
+                    'image/object/bbox/label_text': bytes_feature(labels_text[frame_num]),
+                    'image/object/bbox/difficult': int64_feature(difficult[frame_num]),
+                    'image/object/bbox/truncated': int64_feature(truncated[frame_num]),
+                    'image/format': bytes_feature(image_format),
+                    'image/encoded': bytes_feature(image_data)}))
+                tfrecord_writer.write(example.SerializeToString())
 
 def main(_):
     print('Dataset directory: ./datasets')
