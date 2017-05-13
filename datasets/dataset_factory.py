@@ -25,6 +25,7 @@ from datasets import pascalvoc_2007
 from datasets import pascalvoc_2012
 
 from datasets import caltechbs
+from datasets import vehicle
 
 datasets_map = {
     'cifar10': cifar10,
