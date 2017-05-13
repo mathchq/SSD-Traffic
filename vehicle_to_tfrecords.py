@@ -73,7 +73,12 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
                     labels_f.append(int(LABELS[label_f][0]))
                     labels_text_f.append(label_f.encode('ascii'))
 
-                    bboxes_f.append(object_dict)
+                    xmin = float(object_dict[0])/input_width
+                    ymin = float(object_dict[1])/input_height
+                    xmax = float(object_dict[2])/input_width
+                    ymax = float(object_dict[3])/input_height
+
+                    bboxes_f.append([xmin, ymin, xmax, ymax])
                     difficult_f.append(0)
                     truncated_f.append(0)
                 bboxes.append(bboxes_f)
