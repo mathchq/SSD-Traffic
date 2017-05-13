@@ -32,6 +32,7 @@ datasets_map = {
     'pascalvoc_2007': pascalvoc_2007,
     'pascalvoc_2012': pascalvoc_2012,
     'caltechbs': caltechbs,
+    'vehicle': vehicle,
 }
 
 
