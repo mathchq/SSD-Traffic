@@ -179,6 +179,7 @@ def main(_):
     with tf.python_io.TFRecordWriter(tf_filename_train) as tfrecord_writer:
         #for set_directory in train_directories:
         for set_directory in set_directories:
+            if (set_directory == '1_Ave_7' or set_directory == '1_Ave_12' or set_directory == '1_Ave_17')
             annotations_file = annotations_path+set_directory+'.txt'
             #print(annotations_file)
             set_directory_path = os.path.join(jpeg_path, set_directory + '/')

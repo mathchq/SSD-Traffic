@@ -27,8 +27,8 @@ ITEMS_TO_DESCRIPTIONS = {
     'object/label': 'A list of labels, one per each object.',
 }
 SPLITS_TO_SIZES = {
-    'train': 100,
-    'test': 0,
+    'train': 10800,
+    'test': 10800,
 }
 NUM_CLASSES = 20
 
