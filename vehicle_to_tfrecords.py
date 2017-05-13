@@ -179,11 +179,11 @@ def main(_):
     with tf.python_io.TFRecordWriter(tf_filename_train) as tfrecord_writer:
         #for set_directory in train_directories:
         for set_directory in set_directories:
-            if (set_directory == '1_Ave_7' or set_directory == '1_Ave_12' or set_directory == '1_Ave_17')
-            annotations_file = annotations_path+set_directory+'.txt'
-            #print(annotations_file)
-            set_directory_path = os.path.join(jpeg_path, set_directory + '/')
-            write_images_from_directory(set_directory, set_directory_path, annotationsparse(annotations_file), tfrecord_writer)
+            if (set_directory == '1_Ave_7' or set_directory == '1_Ave_12' or set_directory == '1_Ave_17'):
+                annotations_file = annotations_path+set_directory+'.txt'
+                #print(annotations_file)
+                set_directory_path = os.path.join(jpeg_path, set_directory + '/')
+                write_images_from_directory(set_directory, set_directory_path, annotationsparse(annotations_file), tfrecord_writer)
 
     """
     I have val and train as the same here.  Keeping it as we want results lol
@@ -192,11 +192,12 @@ def main(_):
     with tf.python_io.TFRecordWriter(tf_filename_val) as tfrecord_writer:
         #for set_directory in test_directories:
         for set_directory in set_directories:
-            annotations_file = annotations_path+set_directory+'.txt'
-            set_directory_path = os.path.join(jpeg_path, set_directory + '/')
-            write_images_from_directory(set_directory, set_directory_path, annotationsparse(annotations_file), tfrecord_writer)
-
-    print('\nFinished converting the Caltech dataset!')
+            if (set_directory == '1_Ave_7' or set_directory == '1_Ave_12' or set_directory == '1_Ave_17'):
+                annotations_file = annotations_path+set_directory+'.txt'
+                #print(annotations_file)
+                set_directory_path = os.path.join(jpeg_path, set_directory + '/')
+                write_images_from_directory(set_directory, set_directory_path, annotationsparse(annotations_file), tfrecord_writer)
+    print('\nFinished converting the Vehicle dataset!')
 
 if __name__ == '__main__':
     tf.app.run()
