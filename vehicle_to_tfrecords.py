@@ -58,7 +58,7 @@ def write_images_from_directory(set_directory_name, set_directory_path, annotati
             #print(frame_num)
             if (frame_num <= 3600):
                 #sys.stdout.write('\r>> Annotating image %d' % (frame_num))
-                print('Annotating image' + frame_num)
+                print('Annotating image' + str(frame_num))
                 bboxes_f = []
                 labels_f = []
                 labels_text_f = []
